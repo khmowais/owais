@@ -1,0 +1,135 @@
+/* Display background color black on navbar scroll */
+.navbarScroll.navbarDark {
+    background-color: black;
+}
+
+/* Small devices (mobile/tablets, 767px and below) */
+@media only screen and (max-width: 768px) {
+/* Hero background image */
+.bgimage {
+    height: 80vh;  /* Adjust the value as needed */
+    background: url('../images/heroIma.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Text CSS above hero image */
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 100%; /* Adjust width as needed */
+}
+
+
+}
+
+/* Hero background image */
+.bgimage {
+    height: 80vh;  /* Adjust the value as needed */
+    background: url('../images/heroIma.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Text CSS above hero image */
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    width: 100%; /* Adjust width as needed */
+}
+
+
+/* Text CSS above hero image */
+.hero_title {
+    font-size: 4.5rem;
+}
+
+.hero_desc {
+    font-size: 2rem;
+}
+/* Spacing on all sections */
+#contact {
+    padding-bottom: 4rem;
+}
+
+/* About section image CSS */
+.imageAboutPage {
+    width: 100%;
+}
+
+/* Services section CSS */
+.servicesText.card {
+    height: 280px;
+    cursor: pointer;
+}
+
+.servicesIcon {
+    font-size: 36px;
+    text-align: center;
+    width: 100%;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.card:hover .servicesIcon {
+    color: #008000;
+}
+
+.servicesText:hover {
+    border: 1px solid #008000;
+}
+
+/* Social media icons styling */
+.social-icons {
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.fa-facebook:hover,
+.fa-instagram:hover,
+.fa-twitter:hover,
+.fa-linkedin:hover,
+
+.fab {
+    color: #000000;
+}
+
+/* Footer styling */
+#footer {
+    background-color: #808080;
+    text-align: center;
+}
+/* Additional styling for CTA button */
+.btn-primary {
+    background-color: #008000;
+    border-color: #008000;
+}
+
+/* Improved styling for service cards */
+.servicesText.card {
+    height: auto;
+    cursor: pointer;
+    transition: border 0.3s ease-in-out; /* Added a smooth transition effect */
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card:hover .servicesIcon {
+    color: #008000;
+}
+
+.servicesText:hover {
+    border: 1px solid #008000;
+}
