@@ -1,441 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Khawaja Muhammad Owais — Portfolio</title>
-  <meta name="description" content="Portfolio of Khawaja Muhammad Owais — Data Science, Goshawk Labs, projects, thoughts and contact." />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Khawaja Muhammad Owais — Portfolio</title>
+    <meta name="description" content="Portfolio of Khawaja Muhammad Owais — Data Science, Goshawk Labs, projects, thoughts and contact." />
 
-  <style>
-    /* ====== Minimal, self-contained modern theme ====== */
-    :root{
-      --bg:#0b1020; --card:#0f1724; --muted:#9aa6bd; --accent:#00d1b2; --glass: rgba(255,255,255,0.04);
-      --radius:14px; --maxw:1100px; --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background: linear-gradient(180deg,#071022 0%, #08122a 60%); color:#e6eef6; -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale; line-height:1.5; 
-    }
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:32px;}
-
-    /* --- Top navigation --- */
-    header.top{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(7,10,34,0.6), rgba(7,10,34,0.35));backdrop-filter: blur(6px);}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#2bd6c0);display:grid;place-items:center;font-weight:800;color:#021018}
-    .brand h1{font-size:15px;margin:0}
-    nav.links{display:flex;gap:18px}
-    nav.links a{color:var(--muted);text-decoration:none;font-weight:600}
-    nav.links a:hover{color:var(--accent)}
-
-    /* --- Hero --- */
-    .hero{min-height:72vh;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 0}
-    .hero-left{padding-right:12px}
-    .eyebrow{display:inline-block;padding:6px 10px;background:linear-gradient(90deg, rgba(255,255,255,0.03), transparent);border-radius:999px;color:var(--muted);font-size:13px;margin-bottom:16px}
-    h2.title{font-size:40px;line-height:1.02;margin:0 0 12px}
-    p.lead{color:var(--muted);max-width:70ch;margin:0 0 20px}
-    .cta{display:flex;gap:12px}
-    .btn{background:var(--accent);color:#022;border:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(0,209,178,0.08)}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-
-    /* --- Right panel card --- */
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:22px;box-shadow:0 10px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    .me{display:flex;gap:14px;align-items:center}
-    .avatar{width:80px;height:80px;border-radius:14px;background:linear-gradient(135deg,#04242a,#08333a);display:grid;place-items:center;font-weight:800;color:var(--accent);font-size:20px}
-    .me h3{margin:0;font-size:18px}
-    .meta{color:var(--muted);font-size:13px}
-
-    /* --- Sections --- */
-    section{padding:48px 0}
-    .section-title{font-size:22px;margin-bottom:18px}
-    .grid{display:grid;gap:18px}
-
-    /* Projects / Services */
-    .cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
-    .tile{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass);transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s}
-    .tile:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,23,0.7)}
-    .tile h4{margin:6px 0 8px}
-    .muted{color:var(--muted);font-size:14px}
-
-    /* Thoughts (blog) */
-    .posts{display:grid;grid-template-columns:1fr 320px;gap:20px}
-    .post-list{display:grid;gap:12px}
-    .post-preview{padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
-    .post-preview:hover{transform:translateX(6px);}
-    .post-body{background:var(--card);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-height:200px}
-
-    /* Contact */
-    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
-    form.contact-form{display:flex;flex-direction:column;gap:12px}
-    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:10px;color:inherit}
-    textarea{min-height:140px}
-    .socials{display:flex;gap:12px;flex-wrap:wrap}
-    .icon-btn{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
-
-    /* Footer */
-    footer{padding:28px 0;text-align:center;color:var(--muted)}
-
-    /* Responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr; padding:40px 0}
-      .posts,.contact-grid{grid-template-columns:1fr}
-      .wrap{padding:18px}
-    }
-
-    /* small helper */
-    .small{font-size:13px;color:var(--muted)}
-
-  </style>
-  <!-- Font Awesome CDN (insert in <head>) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SomeHashHere" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* ====== Minimal, self-contained modern theme ====== */
+        :root{
+          --bg:#0b1020; --card:#0f1724; --muted:#9aa6bd; --accent:#00d1b2; --glass: rgba(255,255,255,0.04);
+          --radius:14px; --maxw:1100px; --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+          margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+          background: linear-gradient(180deg,#071022 0%, #08122a 60%); color:#e6eef6; -webkit-font-smoothing:antialiased;
+          -moz-osx-font-smoothing:grayscale; line-height:1.5; 
+        }
+        .wrap{max-width:var(--maxw);margin:0 auto;padding:32px;}
+    
+        /* --- Top navigation --- */
+        header.top{position:sticky;top:0;z-index:40;background:linear-gradient(180deg, rgba(7,10,34,0.6), rgba(7,10,34,0.35));backdrop-filter: blur(6px);}
+        .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
+        .brand{display:flex;gap:12px;align-items:center}
+        .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#2bd6c0);display:grid;place-items:center;font-weight:800;color:#021018}
+        .brand h1{font-size:15px;margin:0}
+        nav.links{display:flex;gap:18px}
+        nav.links a{color:var(--muted);text-decoration:none;font-weight:600}
+        nav.links a:hover{color:var(--accent)}
+    
+        /* --- Hero --- */
+        .hero{min-height:72vh;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 0}
+        .hero-left{padding-right:12px}
+        .eyebrow{display:inline-block;padding:6px 10px;background:linear-gradient(90deg, rgba(255,255,255,0.03), transparent);border-radius:999px;color:var(--muted);font-size:13px;margin-bottom:16px}
+        h2.title{font-size:40px;line-height:1.02;margin:0 0 12px}
+        p.lead{color:var(--muted);max-width:70ch;margin:0 0 20px}
+        .cta{display:flex;gap:12px}
+        .btn{background:var(--accent);color:#022;border:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(0,209,178,0.08)}
+        .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    
+        /* --- Right panel card --- */
+        .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:22px;box-shadow:0 10px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+        .me{display:flex;gap:14px;align-items:center}
+        .avatar{width:80px;height:80px;border-radius:14px;background:linear-gradient(135deg,#04242a,#08333a);display:grid;place-items:center;font-weight:800;color:var(--accent);font-size:20px}
+        .me h3{margin:0;font-size:18px}
+        .meta{color:var(--muted);font-size:13px}
+    
+        /* --- Sections --- */
+        section{padding:48px 0}
+        .section-title{font-size:22px;margin-bottom:18px}
+        .grid{display:grid;gap:18px}
+    
+        /* Projects / Services */
+        .cards{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+        .tile{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--glass);transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s}
+        .tile:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,23,0.7)}
+        .tile h4{margin:6px 0 8px}
+        .muted{color:var(--muted);font-size:14px}
+    
+        /* Thoughts (blog) */
+        .posts{display:grid;grid-template-columns:1fr 320px;gap:20px}
+        .post-list{display:grid;gap:12px}
+        .post-preview{padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);cursor:pointer;border:1px solid rgba(255,255,255,0.03)}
+        .post-preview:hover{transform:translateX(6px);}
+        .post-body{background:var(--card);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-height:200px}
+    
+        /* Contact */
+        .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
+        form.contact-form{display:flex;flex-direction:column;gap:12px}
+        input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:10px;color:inherit}
+        textarea{min-height:140px}
+        .socials{display:flex;gap:12px;flex-wrap:wrap}
+        .icon-btn{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+    
+        /* Footer */
+        footer{padding:28px 0;text-align:center;color:var(--muted)}
+    
+        /* Responsive */
+        @media (max-width:900px){
+          .hero{grid-template-columns:1fr; padding:40px 0}
+          .posts,.contact-grid{grid-template-columns:1fr}
+          .wrap{padding:18px}
+        }
+    
+        /* small helper */
+        .small{font-size:13px;color:var(--muted)}
+    </style>
+    <!-- Font Awesome CDN (insert in <head>) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SomeHashHere" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
+
 <body>
 
-  <header class="top">
-    <div class="wrap nav">
-      <div class="brand">
-        <div class="logo">KO</div>
-        <div>
-          <h1 style="font-size:16px;margin:0">Khawaja M. Owais</h1>
-          <div class="small">Data Science • Goshawk Labs</div>
+    <header class="top">
+        <div class="wrap nav">
+            <div class="brand">
+                <div class="logo">KO</div>
+                <div>
+                    <h1 style="font-size:16px;margin:0">Khawaja M. Owais</h1>
+                    <div class="small">Data Science • Goshawk Labs</div>
+                </div>
+            </div>
+            <nav class="links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                <a href="#thoughts">Thoughts</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
-      </div>
-      <nav class="links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#services">Services</a>
-        <a href="#thoughts">Thoughts</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero-left">
-        <div class="eyebrow">Assalam o Alaikum, I build things that make sense</div>
-        <h2 class="title">Khawaja Muhammad Owais<br/><span style="color:var(--accent)">Data Scientist • Maker • Founder</span></h2>
-        <p class="lead">I design data-first systems, offline-capable tools, and experimental robotics projects. I run <strong>Goshawk Labs</strong> — a small lab for hands-on science and open experimentation.</p>
-        <div class="cta">
-          <button class="btn" onclick="location.href='#projects'">My Work</button>
-          <button class="btn ghost" onclick="location.href='#thoughts'">Read Thoughts</button>
-        </div>
-
-        <div style="margin-top:24px;color:var(--muted);display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-          <div class="small">📍 Islamabad, Pakistan</div>
-          <div class="small">✉️ <span id="email-main">owaiskhawaja789@gmail.com</span></div>
-        </div>
-      </div>
-
-      <aside class="card">
-        <div class="me">
-          <div class="avatar">KO</div>
-          <div>
-            <h3>Khawaja M. Owais</h3>
-            <div class="meta">Data Scientist • Founder Goshawk Labs</div>
-          </div>
-        </div>
-
-        <hr style="margin:14px 0;border-color:rgba(255,255,255,0.03)" />
-        <div style="display:flex;justify-content:space-between;gap:10px">
-          <div>
-            <div class="small">Kaggle</div>
-            <div style="font-weight:700">khawajamohammadowais</div>
-          </div>
-          <div>
-            <div class="small">GitHub</div>
-            <div style="font-weight:700">khmowais</div>
-          </div>
-        </div>
-
-<div style="margin-top:14px; display:flex; gap:12px; align-items:center;">
-
-  <a class="icon-btn" href="https://github.com/khmowais" target="_blank" aria-label="Github" title="Github">
-    <img src="https://img.icons8.com/ios-glyphs/24/000000/github.png" alt="GitHub" width="20" height="20" />
-  </a>
-
-  <a class="icon-btn" href="https://www.linkedin.com/in/the-mohammad-owais" target="_blank" aria-label="LinkedIn" title="LinkedIn">
-    <img src="https://img.icons8.com/ios-glyphs/24/0077B5/linkedin.png" alt="LinkedIn" width="20" height="20" />
-  </a>
-
-  <a class="icon-btn" href="https://www.instagram.com/ap2kmo" target="_blank" aria-label="Instagram" title="Instagram">
-    <img src="https://img.icons8.com/ios-glyphs/24/E4405F/instagram-new.png" alt="Instagram" width="20" height="20" />
-  </a>
-
-  <a class="icon-btn" href="https://www.kaggle.com/khawajamohammadowais" target="_blank" aria-label="Kaggle" title="Kaggle">
-    <img src="https://img.icons8.com/ios-filled/24/20BEFF/combo-chart--v1.png" alt="Kaggle" width="20" height="20" />
-  </a>
-
-</div>
-
-
-        <div style="margin-top:12px;display:flex;gap:8px;align-items:center;justify-content:flex-end">
-          <button class="btn ghost" onclick="copyToClipboard('owaiskhawaja789@gmail.com')">Copy Email</button>
-        </div>
-      </aside>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="section-title">About</div>
-      <div class="grid" style="grid-template-columns:1fr 320px;gap:20px;align-items:start">
-        <div>
-          <p class="muted">I’m a data Scientist founder of <strong>Goshawk Labs</strong>, and a hands-on experimenter. My work spans machine learning, embedded systems, UAV control and offline-first software for low-connectivity communities. I prefer shipping simple, useful systems over perfect but unused research prototypes.</p>
-
-          <h4 style="margin-top:18px">Quick facts</h4>
-          <ul class="small" style="margin-top:8px">
-            <li>Location: Islamabad, Pakistan</li>
-            <li>Languages: Python, C++, Bash, JavaScript</li>
-            <li>Interests: UAVs, navigation, low-bandwidth systems, ML, data visualization</li>
-          </ul>
-
-          <h4 style="margin-top:16px">Hobbies</h4>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-            <div class="tile small">Reading & Writing</div>
-            <div class="tile small">DIY Electronics</div>
-            <div class="tile small">Drones & Robotics</div>
-            <div class="tile small">Hiking & Photography</div>
-          </div>
-        </div>
-
-        <aside class="card">
-          <div style="font-weight:700">Contact</div>
-          <div class="small" style="margin-top:8px">Quick reply: <br/><a href="mailto:owaiskhawaja789@gmail.com">owaiskhawaja789@gmail.com</a></div>
-          <div class="small" style="margin-top:8px">Secure: <br/><a href="mailto:khMohammadowais@proton.me">khMohammadowais@proton.me</a></div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="section-title">Projects</div>
-      <div class="cards tile-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
-        <div class="tile">
-          <h4>Goshawk Labs</h4>
-          <div class="muted">Founder & Lead</div>
-          <p style="margin-top:10px">Goshawk Labs documents experiments in UAVs, INS/VIO research, and offline-first tools. It’s a place for messy experiments that might someday become useful tools.</p>
-        </div>
-        <div class="tile">
-          <h4>LocalDrop</h4>
-          <div class="muted">Offline file & messaging</div>
-          <p style="margin-top:10px">A snickernet-style app that copies files via USB/Bluetooth and serves a local web UI for non-tech users. Designed for low/no-internet communities.</p>
-        </div>
-        <div class="tile">
-          <h4>UAV Ground Control Station</h4>
-          <div class="muted">Python • ArduPilot</div>
-          <p style="margin-top:10px">A GCS for sim + real vehicles with mission planning, joystick control, and live telemetry streaming.</p>
-        </div>
-      </div>
-    </section>
-
-
-
-
-
-
-
-
-<!-- SERVICES -->
-<section id="services" style="background:transparent; padding: 40px 20px;">
-  <div class="section-title">Services</div>
-
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-
-  <style>
-    #services .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-
-    #services .filter-button {
-      background: #f2f2f2;
-      border: none;
-      padding: 10px 16px;
-      cursor: pointer;
-      border-radius: 6px;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-
-    #services .filter-button.active {
-      background: #333;
-      color: #fff;
-    }
-
-    #services .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    #services .tile {
-      background: rgb(20, 31, 68);
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    #services .tile:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    #services .tile h4 {
-      margin-bottom: 10px;
-      font-size: 1.1em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    #services .tile .muted {
-      color: #f8f8f8;
-      font-size: 0.95em;
-    }
-
-    #services .bi {
-      font-size: 1.2em;
-      color: #ccbebe;
-    }
-
-    #services .tile[data-category] {
-      display: block;
-    }
-
-    #services .tile.hidden {
-      display: none !important;
-    }
-  </style>
-
-  <!-- Filter Buttons -->
-  <div class="filter-bar">
-    <button class="filter-button active" data-filter="all">All</button>
-    <button class="filter-button" data-filter="data-science">Data Science & AI</button>
-    <button class="filter-button" data-filter="development">Software Development</button>
-    <button class="filter-button" data-filter="deployment">Deployment & MLOps</button>
-    <button class="filter-button" data-filter="consulting">Consulting & Training</button>
-  </div>
-
-  <!-- Services Grid -->
-  <div class="cards">
-
-    <!-- 🧠 Data Science -->
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-graph-up"></i>Data Analysis</h4><p class="muted">Explore trends, insights, and summary statistics.</p></div>
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-cpu"></i>Machine Learning</h4><p class="muted">Build predictive models and optimize performance.</p></div>
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-broom"></i>Data Cleaning</h4><p class="muted">Preprocess, clean, and prepare datasets.</p></div>
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-percent"></i>Statistical Analysis</h4><p class="muted">A/B testing, p-values, confidence intervals.</p></div>
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-clock-history"></i>Predictive Analytics</h4><p class="muted">Time series forecasting and trends analysis.</p></div>
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-bar-chart-line"></i>Data Visualization</h4><p class="muted">Dashboards and visual storytelling.</p></div>
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-chat-left-text"></i>NLP Solutions</h4><p class="muted">Chatbots, sentiment analysis, summarization.</p></div>
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-image"></i>Computer Vision</h4><p class="muted">Object detection, image classification, OCR.</p></div>
-    <div class="tile" data-category="data-science"><h4><i class="bi bi-diagram-3"></i>Deep Learning</h4><p class="muted">CNNs, RNNs, Transformers, GANs.</p></div>
-
-    <!-- 💻 Software Development -->
-    <div class="tile" data-category="development"><h4><i class="bi bi-globe2"></i>Web Development</h4><p class="muted">Full-stack apps using React, Django, etc.</p></div>
-    <div class="tile" data-category="development"><h4><i class="bi bi-plug"></i>API Development</h4><p class="muted">RESTful and GraphQL APIs for backend services.</p></div>
-    <div class="tile" data-category="development"><h4><i class="bi bi-database"></i>Database Design</h4><p class="muted">Optimized SQL and NoSQL architectures.</p></div>
-    <div class="tile" data-category="development"><h4><i class="bi bi-phone"></i>Mobile App Development</h4><p class="muted">Flutter, React Native, or native SDKs.</p></div>
-    <div class="tile" data-category="development"><h4><i class="bi bi-tools"></i>Custom Solutions</h4><p class="muted">Bespoke tools, engines, and automation.</p></div>
-
-    <!-- 🚀 MLOps -->
-    <div class="tile" data-category="deployment"><h4><i class="bi bi-box-seam"></i>Model Deployment</h4><p class="muted">Deploy models via FastAPI, Flask, etc.</p></div>
-    <div class="tile" data-category="deployment"><h4><i class="bi bi-arrow-repeat"></i>MLOps</h4><p class="muted">Pipeline automation, reproducibility, CI/CD.</p></div>
-    <div class="tile" data-category="deployment"><h4><i class="bi bi-cloud-upload"></i>DevOps & Cloud</h4><p class="muted">Docker, Kubernetes, AWS, GCP, Azure.</p></div>
-
-    <!-- 🎓 Consulting -->
-    <div class="tile" data-category="consulting"><h4><i class="bi bi-lightbulb"></i>Consulting & Strategy</h4><p class="muted">Strategic data use for business outcomes.</p></div>
-    <div class="tile" data-category="consulting"><h4><i class="bi bi-easel"></i>Training & Workshops</h4><p class="muted">Courses for teams, schools, and universities.</p></div>
-  </div>
-
-  <!-- Filter Logic -->
-  <script>
-    const filterButtons = document.querySelectorAll('#services .filter-button');
-    const serviceTiles = document.querySelectorAll('#services .tile');
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Update active class
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        const selected = button.getAttribute('data-filter');
-
-        serviceTiles.forEach(tile => {
-          const category = tile.getAttribute('data-category');
-          if (selected === 'all' || category === selected) {
-            tile.classList.remove('hidden');
-          } else {
-            tile.classList.add('hidden');
-          }
-        });
-      });
-    });
-  </script>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- THOUGHTS / BLOG -->
-    <section id="thoughts">
-      <div class="section-title">Thoughts — Articles & Publications</div>
-
-      <div class="posts">
-        <!-- Left: list of posts -->
-        <div class="post-list">
-          <div id="postList" class="post-list-inner">
-            <!-- populated by JS -->
-          </div>
-        </div>
-
-        <!-- Right: post content -->
-        <div class="post-body card" id="postContent">
-          <div class="small">Blog is empty — add posts to <code>/posts</code> in this repo. See instructions below.</div>
-        </div>
-      </div>
-
-      <div style="margin-top:18px;color:var(--muted);font-size:13px">
-        <strong>Quick setup (how posts work)</strong>
-        <ol style="margin-top:8px">
-          <li>Create a folder named <code>posts</code> at the repo root (same repo as this page).</li>
-          <li>Create a simple Markdown file for each post, e.g. <code>posts/2025-09-01-intro.md</code>.</li>
-          <li>Create a JSON manifest file at <code>posts/posts.json</code> listing posts (filename, title, date). Example below.</li>
-        </ol>
-        <pre style="background:#061427;padding:12px;border-radius:8px;margin-top:8px;color:#9fbdd9">[
+    </header>
+
+    <main class="wrap">
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="hero-left">
+                <div class="eyebrow">Assalam o Alaikum, I build things that make sense</div>
+                <h2 class="title">Khawaja Muhammad Owais<br/><span style="color:var(--accent)">Data Scientist • Maker • Founder</span></h2>
+                <p class="lead">I design data-first systems, offline-capable tools, and experimental robotics projects. I run <strong>Goshawk Labs</strong> — a small lab for hands-on science and open experimentation.</p>
+                <div class="cta">
+                    <button class="btn" onclick="location.href='#projects'">My Work</button>
+                    <button class="btn ghost" onclick="location.href='#thoughts'">Read Thoughts</button>
+                </div>
+
+                <div style="margin-top:24px;color:var(--muted);display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+                    <div class="small">📍 Islamabad, Pakistan</div>
+                    <div class="small">✉️ <span id="email-main">owaiskhawaja789@gmail.com</span></div>
+                </div>
+            </div>
+
+            <aside class="card">
+                <div class="me">
+                    <div class="avatar">KO</div>
+                    <div>
+                        <h3>Khawaja M. Owais</h3>
+                        <div class="meta">Data Scientist • Founder Goshawk Labs</div>
+                    </div>
+                </div>
+
+                <hr style="margin:14px 0;border-color:rgba(255,255,255,0.03)" />
+                <div style="display:flex;justify-content:space-between;gap:10px">
+                    <div>
+                        <div class="small">Kaggle</div>
+                        <div style="font-weight:700">khawajamohammadowais</div>
+                    </div>
+                    <div>
+                        <div class="small">GitHub</div>
+                        <div style="font-weight:700">khmowais</div>
+                    </div>
+                </div>
+
+                <div style="margin-top:14px; display:flex; gap:12px; align-items:center;">
+
+                    <a class="icon-btn" href="https://github.com/khmowais" target="_blank" aria-label="Github" title="Github">
+                        <img src="https://img.icons8.com/ios-glyphs/24/000000/github.png" alt="GitHub" width="20" height="20" />
+                    </a>
+
+                    <a class="icon-btn" href="https://www.linkedin.com/in/the-mohammad-owais" target="_blank" aria-label="LinkedIn" title="LinkedIn">
+                        <img src="https://img.icons8.com/ios-glyphs/24/0077B5/linkedin.png" alt="LinkedIn" width="20" height="20" />
+                    </a>
+
+                    <a class="icon-btn" href="https://www.instagram.com/ap2kmo" target="_blank" aria-label="Instagram" title="Instagram">
+                        <img src="https://img.icons8.com/ios-glyphs/24/E4405F/instagram-new.png" alt="Instagram" width="20" height="20" />
+                    </a>
+
+                    <a class="icon-btn" href="https://www.kaggle.com/khawajamohammadowais" target="_blank" aria-label="Kaggle" title="Kaggle">
+                        <img src="https://img.icons8.com/ios-filled/24/20BEFF/combo-chart--v1.png" alt="Kaggle" width="20" height="20" />
+                    </a>
+
+                </div>
+
+
+                <div style="margin-top:12px;display:flex;gap:8px;align-items:center;justify-content:flex-end">
+                    <button class="btn ghost" onclick="copyToClipboard('owaiskhawaja789@gmail.com')">Copy Email</button>
+                </div>
+            </aside>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="section-title">About</div>
+            <div class="grid" style="grid-template-columns:1fr 320px;gap:20px;align-items:start">
+                <div>
+                    <p class="muted">I’m a data Scientist founder of <strong>Goshawk Labs</strong>, and a hands-on experimenter. My work spans machine learning, embedded systems, UAV control and offline-first software for low-connectivity communities. I prefer shipping
+                        simple, useful systems over perfect but unused research prototypes.</p>
+
+                    <h4 style="margin-top:18px">Quick facts</h4>
+                    <ul class="small" style="margin-top:8px">
+                        <li>Location: Islamabad, Pakistan</li>
+                        <li>Languages: Python, C++, Bash, JavaScript</li>
+                        <li>Interests: UAVs, navigation, low-bandwidth systems, ML, data visualization</li>
+                    </ul>
+
+                    <h4 style="margin-top:16px">Hobbies</h4>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+                        <div class="tile small">Reading & Writing</div>
+                        <div class="tile small">DIY Electronics</div>
+                        <div class="tile small">Drones & Robotics</div>
+                        <div class="tile small">Hiking & Photography</div>
+                    </div>
+                </div>
+
+                <aside class="card">
+                    <div style="font-weight:700">Contact</div>
+                    <div class="small" style="margin-top:8px">Quick reply:
+                        <br/><a href="mailto:owaiskhawaja789@gmail.com">owaiskhawaja789@gmail.com</a></div>
+                    <div class="small" style="margin-top:8px">Secure:
+                        <br/><a href="mailto:khMohammadowais@proton.me">khMohammadowais@proton.me</a></div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="section-title">Projects</div>
+            <div class="cards tile-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
+                <div class="tile">
+                    <h4>Goshawk Labs</h4>
+                    <div class="muted">Founder & Lead</div>
+                    <p style="margin-top:10px">Goshawk Labs documents experiments in UAVs, INS/VIO research, and offline-first tools. It’s a place for messy experiments that might someday become useful tools.</p>
+                </div>
+                <div class="tile">
+                    <h4>LocalDrop</h4>
+                    <div class="muted">Offline file & messaging</div>
+                    <p style="margin-top:10px">A snickernet-style app that copies files via USB/Bluetooth and serves a local web UI for non-tech users. Designed for low/no-internet communities.</p>
+                </div>
+                <div class="tile">
+                    <h4>UAV Ground Control Station</h4>
+                    <div class="muted">Python • ArduPilot</div>
+                    <p style="margin-top:10px">A GCS for sim + real vehicles with mission planning, joystick control, and live telemetry streaming.</p>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+        <!-- SERVICES -->
+        <section id="services" style="background:transparent; padding: 40px 20px;">
+            <div class="section-title">Services</div>
+
+            <!-- Bootstrap Icons -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+            <style>
+                #services .filter-bar {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 10px;
+                  margin-bottom: 30px;
+                }
+            
+                #services .filter-button {
+                  background: #f2f2f2;
+                  border: none;
+                  padding: 10px 16px;
+                  cursor: pointer;
+                  border-radius: 6px;
+                  font-weight: 500;
+                  transition: background 0.2s;
+                }
+            
+                #services .filter-button.active {
+                  background: #333;
+                  color: #fff;
+                }
+            
+                #services .cards {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                  gap: 20px;
+                }
+            
+                #services .tile {
+                  background: rgb(20, 31, 68);
+                  padding: 20px;
+                  border-radius: 8px;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                  transition: transform 0.2s ease, box-shadow 0.2s ease;
+                }
+            
+                #services .tile:hover {
+                  transform: translateY(-6px);
+                  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                }
+            
+                #services .tile h4 {
+                  margin-bottom: 10px;
+                  font-size: 1.1em;
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                }
+            
+                #services .tile .muted {
+                  color: #f8f8f8;
+                  font-size: 0.95em;
+                }
+            
+                #services .bi {
+                  font-size: 1.2em;
+                  color: #ccbebe;
+                }
+            
+                #services .tile[data-category] {
+                  display: block;
+                }
+            
+                #services .tile.hidden {
+                  display: none !important;
+                }
+            </style>
+
+            <!-- Filter Buttons -->
+            <div class="filter-bar">
+                <button class="filter-button active" data-filter="all">All</button>
+                <button class="filter-button" data-filter="data-science">Data Science & AI</button>
+                <button class="filter-button" data-filter="development">Software Development</button>
+                <button class="filter-button" data-filter="deployment">Deployment & MLOps</button>
+                <button class="filter-button" data-filter="consulting">Consulting & Training</button>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="cards">
+
+                <!-- 🧠 Data Science -->
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-graph-up"></i>Data Analysis</h4>
+                    <p class="muted">Explore trends, insights, and summary statistics.</p>
+                </div>
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-cpu"></i>Machine Learning</h4>
+                    <p class="muted">Build predictive models and optimize performance.</p>
+                </div>
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-broom"></i>Data Cleaning</h4>
+                    <p class="muted">Preprocess, clean, and prepare datasets.</p>
+                </div>
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-percent"></i>Statistical Analysis</h4>
+                    <p class="muted">A/B testing, p-values, confidence intervals.</p>
+                </div>
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-clock-history"></i>Predictive Analytics</h4>
+                    <p class="muted">Time series forecasting and trends analysis.</p>
+                </div>
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-bar-chart-line"></i>Data Visualization</h4>
+                    <p class="muted">Dashboards and visual storytelling.</p>
+                </div>
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-chat-left-text"></i>NLP Solutions</h4>
+                    <p class="muted">Chatbots, sentiment analysis, summarization.</p>
+                </div>
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-image"></i>Computer Vision</h4>
+                    <p class="muted">Object detection, image classification, OCR.</p>
+                </div>
+                <div class="tile" data-category="data-science">
+                    <h4><i class="bi bi-diagram-3"></i>Deep Learning</h4>
+                    <p class="muted">CNNs, RNNs, Transformers, GANs.</p>
+                </div>
+
+                <!-- 💻 Software Development -->
+                <div class="tile" data-category="development">
+                    <h4><i class="bi bi-globe2"></i>Web Development</h4>
+                    <p class="muted">Full-stack apps using React, Django, etc.</p>
+                </div>
+                <div class="tile" data-category="development">
+                    <h4><i class="bi bi-plug"></i>API Development</h4>
+                    <p class="muted">RESTful and GraphQL APIs for backend services.</p>
+                </div>
+                <div class="tile" data-category="development">
+                    <h4><i class="bi bi-database"></i>Database Design</h4>
+                    <p class="muted">Optimized SQL and NoSQL architectures.</p>
+                </div>
+                <div class="tile" data-category="development">
+                    <h4><i class="bi bi-phone"></i>Mobile App Development</h4>
+                    <p class="muted">Flutter, React Native, or native SDKs.</p>
+                </div>
+                <div class="tile" data-category="development">
+                    <h4><i class="bi bi-tools"></i>Custom Solutions</h4>
+                    <p class="muted">Bespoke tools, engines, and automation.</p>
+                </div>
+
+                <!-- 🚀 MLOps -->
+                <div class="tile" data-category="deployment">
+                    <h4><i class="bi bi-box-seam"></i>Model Deployment</h4>
+                    <p class="muted">Deploy models via FastAPI, Flask, etc.</p>
+                </div>
+                <div class="tile" data-category="deployment">
+                    <h4><i class="bi bi-arrow-repeat"></i>MLOps</h4>
+                    <p class="muted">Pipeline automation, reproducibility, CI/CD.</p>
+                </div>
+                <div class="tile" data-category="deployment">
+                    <h4><i class="bi bi-cloud-upload"></i>DevOps & Cloud</h4>
+                    <p class="muted">Docker, Kubernetes, AWS, GCP, Azure.</p>
+                </div>
+
+                <!-- 🎓 Consulting -->
+                <div class="tile" data-category="consulting">
+                    <h4><i class="bi bi-lightbulb"></i>Consulting & Strategy</h4>
+                    <p class="muted">Strategic data use for business outcomes.</p>
+                </div>
+                <div class="tile" data-category="consulting">
+                    <h4><i class="bi bi-easel"></i>Training & Workshops</h4>
+                    <p class="muted">Courses for teams, schools, and universities.</p>
+                </div>
+            </div>
+
+            <!-- Filter Logic -->
+            <script>
+                const filterButtons = document.querySelectorAll('#services .filter-button');
+                const serviceTiles = document.querySelectorAll('#services .tile');
+            
+                filterButtons.forEach(button => {
+                  button.addEventListener('click', () => {
+                    // Update active class
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+            
+                    const selected = button.getAttribute('data-filter');
+            
+                    serviceTiles.forEach(tile => {
+                      const category = tile.getAttribute('data-category');
+                      if (selected === 'all' || category === selected) {
+                        tile.classList.remove('hidden');
+                      } else {
+                        tile.classList.add('hidden');
+                      }
+                    });
+                  });
+                });
+            </script>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- THOUGHTS / BLOG -->
+        <section id="thoughts">
+            <div class="section-title">Thoughts — Articles & Publications</div>
+
+            <div class="posts">
+                <!-- Left: list of posts -->
+                <div class="post-list">
+                    <div id="postList" class="post-list-inner">
+                        <!-- populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Right: post content -->
+                <div class="post-body card" id="postContent">
+                    <div class="small">Blog is empty — add posts to <code>/posts</code> in this repo. See instructions below.</div>
+                </div>
+            </div>
+
+            <div style="margin-top:18px;color:var(--muted);font-size:13px">
+                <strong>Quick setup (how posts work)</strong>
+                <ol style="margin-top:8px">
+                    <li>Create a folder named <code>posts</code> at the repo root (same repo as this page).</li>
+                    <li>Create a simple Markdown file for each post, e.g. <code>posts/2025-09-01-intro.md</code>.</li>
+                    <li>Create a JSON manifest file at <code>posts/posts.json</code> listing posts (filename, title, date). Example below.</li>
+                </ol>
+                <pre style="background:#061427;padding:12px;border-radius:8px;margin-top:8px;color:#9fbdd9">[
   {"file":"2025-09-01-intro.md","title":"Welcome — My First Post","date":"2025-09-01"},
   {"file":"2025-09-12-offgrid.md","title":"Off-grid Tech","date":"2025-09-12"}
 ]</pre>
-        <div style="margin-top:8px;color:var(--muted)">When you push the markdown file and update <code>posts/posts.json</code>, this page will fetch and render the list automatically on GitHub Pages.</div>
-      </div>
-    </section>
+                <div style="margin-top:8px;color:var(--muted)">When you push the markdown file and update <code>posts/posts.json</code>, this page will fetch and render the list automatically on GitHub Pages.</div>
+            </div>
+        </section>
 
 
 
@@ -445,396 +506,460 @@
 
 
 
-<!-- CONTACT -->
-<section id="contact" style="padding: 40px 20px;">
-  <div class="section-title">Contact</div>
+        <!-- CONTACT -->
+        <section id="contact" style="padding: 40px 20px;">
+            <div class="section-title">Contact</div>
 
-  <style>
-    #contact .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      align-items: flex-start;
-      margin-top: 24px;
-    }
+            <style>
+                #contact .contact-grid {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                  gap: 30px;
+                  align-items: flex-start;
+                  margin-top: 24px;
+                }
+            
+                #contact .contact-form {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 16px;
+                  background: rgb(2, 11, 61);
+                  padding: 24px;
+                  border-radius: 12px;
+                  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+                }
+            
+                #contact .contact-form input,
+                #contact .contact-form textarea {
+                  font: inherit;
+                  padding: 12px 14px;
+                  border-radius: 8px;
+                  border: 1px solid #ddd;
+                  background: #211263;
+                  width: 100%;
+                  resize: vertical;
+                  transition: border 0.2s;
+                }
+            
+                #contact .contact-form input:focus,
+                #contact .contact-form textarea:focus {
+                  border-color: #888;
+                  background: #fff;
+                  outline: none;
+                }
+            
+                #contact .contact-form textarea {
+                  min-height: 120px;
+                }
+            
+                #contact .btn {
+                  padding: 10px 18px;
+                  border: none;
+                  border-radius: 6px;
+                  background: #333;
+                  color: #fff;
+                  cursor: pointer;
+                  font-weight: 500;
+                  transition: background 0.2s;
+                }
+            
+                #contact .btn:hover {
+                  background: #111;
+                }
+            
+                #contact .btn.ghost {
+                  background: transparent;
+                  color: #333;
+                  border: 1px solid #ccc;
+                }
+            
+                #contact .btn.ghost:hover {
+                  background: #f2f2f2;
+                }
+            
+                #contact .card {
+                  background: rgb(32, 46, 128);
+                  padding: 24px;
+                  border-radius: 12px;
+                  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+                }
+            
+                #contact .card .small {
+                  font-size: 0.92em;
+                  color: #fcf7f7;
+                }
+            
+                #contact .card a {
+                  color: #0077cc;
+                  text-decoration: none;
+                }
+            
+                #contact .card a:hover {
+                  text-decoration: underline;
+                }
+            
+                #contact .socials {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 10px;
+                  margin-top: 6px;
+                }
+            
+                #contact .icon-btn {
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 36px;
+                  height: 36px;
+                  background: #1f4896;
+                  color: #fff7f7;
+                  border-radius: 50%;
+                  font-weight: bold;
+                  text-decoration: none;
+                  transition: background 0.2s;
+                }
+            
+                #contact .icon-btn:hover {
+                  background: #175092;
+                }
+            
+                .map-embed {
+                  margin-top: 40px;
+                  border-radius: 12px;
+                  overflow: hidden;
+                  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+                }
+            
+                .map-embed iframe {
+                  width: 100%;
+                  height: 300px;
+                  border: none;
+                }
+            
+                /* Toast */
+                #toast {
+                  position: fixed;
+                  bottom: 20px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  background: #222;
+                  color: #fff;
+                  padding: 12px 20px;
+                  border-radius: 6px;
+                  opacity: 0;
+                  pointer-events: none;
+                  transition: opacity 0.3s ease, transform 0.3s ease;
+                  z-index: 999;
+                  font-size: 0.9em;
+                }
+            
+                #toast.show {
+                  opacity: 1;
+                  pointer-events: auto;
+                  transform: translateX(-50%) translateY(0);
+                }
+            </style>
 
-    #contact .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      background: rgb(2, 11, 61);
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-    }
+            <!-- Grid -->
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <form class="contact-form" onsubmit="sendMessage(event)">
+                    <input id="name" name="name" placeholder="Your name" required />
+                    <input id="email" name="email" type="email" placeholder="Your email" required />
+                    <input id="subject" name="subject" placeholder="Subject" required />
+                    <textarea id="message" name="message" placeholder="Message" required></textarea>
 
-    #contact .contact-form input,
-    #contact .contact-form textarea {
-      font: inherit;
-      padding: 12px 14px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      background: #211263;
-      width: 100%;
-      resize: vertical;
-      transition: border 0.2s;
-    }
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button class="btn" type="submit">Send Message</button>
+                        <button type="button" class="btn ghost" onclick="copyToClipboard('owaiskhawaja789@gmail.com')">Copy Email</button>
+                    </div>
+                </form>
 
-    #contact .contact-form input:focus,
-    #contact .contact-form textarea:focus {
-      border-color: #888;
-      background: #fff;
-      outline: none;
-    }
+                <!-- Contact Info Card -->
+                <aside class="card">
+                    <div style="margin-bottom: 12px; font-weight: 600; font-size: 1.05em;">Get in Touch</div>
 
-    #contact .contact-form textarea {
-      min-height: 120px;
-    }
+                    <div class="small">📨 Quick reply: <a href="mailto:owaiskhawaja789@gmail.com">owaiskhawaja789@gmail.com</a></div>
+                    <div class="small" style="margin-top: 8px;">🔒 Secure mail: <a href="mailto:khMohammadowais@proton.me">khMohammadowais@proton.me</a></div>
 
-    #contact .btn {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 6px;
-      background: #333;
-      color: #fff;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
-
-    #contact .btn:hover {
-      background: #111;
-    }
-
-    #contact .btn.ghost {
-      background: transparent;
-      color: #333;
-      border: 1px solid #ccc;
-    }
-
-    #contact .btn.ghost:hover {
-      background: #f2f2f2;
-    }
-
-    #contact .card {
-      background: rgb(32, 46, 128);
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-    }
-
-    #contact .card .small {
-      font-size: 0.92em;
-      color: #fcf7f7;
-    }
-
-    #contact .card a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-
-    #contact .card a:hover {
-      text-decoration: underline;
-    }
-
-    #contact .socials {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    #contact .icon-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: #1f4896;
-      color: #fff7f7;
-      border-radius: 50%;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-
-    #contact .icon-btn:hover {
-      background: #175092;
-    }
-
-    .map-embed {
-      margin-top: 40px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
-    }
-
-    .map-embed iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-    }
-
-    /* Toast */
-    #toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #222;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 6px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      z-index: 999;
-      font-size: 0.9em;
-    }
-
-    #toast.show {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
-    }
-  </style>
-
-  <!-- Grid -->
-  <div class="contact-grid">
-    <!-- Contact Form -->
-    <form class="contact-form" onsubmit="sendMessage(event)">
-      <input id="name" name="name" placeholder="Your name" required />
-      <input id="email" name="email" type="email" placeholder="Your email" required />
-      <input id="subject" name="subject" placeholder="Subject" required />
-      <textarea id="message" name="message" placeholder="Message" required></textarea>
-
-      <div style="display: flex; gap: 10px; align-items: center;">
-        <button class="btn" type="submit">Send Message</button>
-        <button type="button" class="btn ghost" onclick="copyToClipboard('owaiskhawaja789@gmail.com')">Copy Email</button>
-      </div>
-    </form>
-
-    <!-- Contact Info Card -->
-    <aside class="card">
-      <div style="margin-bottom: 12px; font-weight: 600; font-size: 1.05em;">Get in Touch</div>
-
-      <div class="small">📨 Quick reply: <a href="mailto:owaiskhawaja789@gmail.com">owaiskhawaja789@gmail.com</a></div>
-      <div class="small" style="margin-top: 8px;">🔒 Secure mail: <a href="mailto:khMohammadowais@proton.me">khMohammadowais@proton.me</a></div>
-
-      <div style="margin-top: 16px;">
-        <div class="small" style="margin-bottom: 8px;">🌐 Profiles</div>
-<div class="socials">
-  <a class="icon-btn" href="https://github.com/khmowais" target="_blank" title="GitHub">
-    <i data-lucide="github"></i>
-  </a>
-  <a class="icon-btn" href="https://www.kaggle.com/khawajamohammadowais" target="_blank" title="Kaggle">
-    <i data-lucide="bar-chart-2"></i> <!-- No Kaggle icon, use a data-related icon -->
-  </a>
-  <a class="icon-btn" href="https://www.instagram.com/ap2kmo" target="_blank" title="Instagram">
-    <i data-lucide="camera"></i>
-  </a>
-  <a class="icon-btn" href="https://www.linkedin.com/in/the-mohammad-owais" target="_blank" title="LinkedIn">
-    <i data-lucide="linkedin"></i>
-  </a>
-  <a class="icon-btn" href="https://medium.com/@i211762" target="_blank" title="Medium">
-    <i data-lucide="book-open"></i>
-  </a>
-</div>
-
-<!-- Init Lucide (place at end of body) -->
-<script>
-  lucide.createIcons();
-</script>
+                    <div style="margin-top: 16px;">
+                        <div class="small" style="margin-bottom: 8px;">🌐 Profiles</div>
 
 
-      </div>
-    </aside>
-  </div>
+                        <style>
+                            .socials {
+                                margin-top: 14px;
+                                display: flex;
+                                gap: 12px;
+                                align-items: center;
+                              }
+                            
+                              .icon-btn {
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 36px;
+                                height: 36px;
+                                border-radius: 50%;
+                                transition: all 0.2s ease;
+                                background-color: transparent;
+                                text-decoration: none;
+                                position: relative;
+                              }
+                            
+                              .icon-btn img {
+                                width: 20px;
+                                height: 20px;
+                                transition: transform 0.2s ease, opacity 0.2s ease;
+                              }
+                            
+                              .icon-btn:hover {
+                                background-color: rgba(0, 0, 0, 0.05);
+                                transform: scale(1.1);
+                              }
+                            
+                              .icon-btn:hover img {
+                                opacity: 0.8;
+                                transform: scale(1.1);
+                              }
+                            
+                              /* Optional: Custom tooltip styling */
+                              .icon-btn::after {
+                                content: attr(title);
+                                position: absolute;
+                                bottom: -32px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background-color: #000;
+                                color: #fff;
+                                font-size: 11px;
+                                padding: 4px 8px;
+                                border-radius: 4px;
+                                white-space: nowrap;
+                                opacity: 0;
+                                pointer-events: none;
+                                transition: opacity 0.2s ease;
+                                z-index: 100;
+                              }
+                            
+                              .icon-btn:hover::after {
+                                opacity: 1;
+                              }
+                        </style>
 
-  <!-- Google Map Embed -->
-  <div class="map-embed">
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.372351926898!2d73.0785923!3d33.6750735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df950ab9d7a6f3%3A0x9920e0c679dfbfbb!2sI-8%2F2%2C%20Islamabad%2C%20Pakistan!5e0!3m2!1sen!2s!4v1694298104123!5m2!1sen!2s" 
-      allowfullscreen="" 
-      loading="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
+                        <div class="socials">
+                            <a class="icon-btn" href="https://github.com/khmowais" target="_blank" title="GitHub">
+                                <img src="https://img.icons8.com/ios-glyphs/24/000000/github.png" alt="GitHub" />
+                            </a>
 
-  <!-- Toast Message -->
-  <div id="toast">Message sent successfully!</div>
+                            <a class="icon-btn" href="https://www.kaggle.com/khawajamohammadowais" target="_blank" title="Kaggle">
+                                <img src="https://img.icons8.com/ios-filled/24/20BEFF/combo-chart--v1.png" alt="Kaggle" />
+                            </a>
 
-  <!-- JS -->
-  <script>
-    function sendMessage(event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
+                            <a class="icon-btn" href="https://www.instagram.com/ap2kmo" target="_blank" title="Instagram">
+                                <img src="https://img.icons8.com/ios-glyphs/24/E4405F/instagram-new.png" alt="Instagram" />
+                            </a>
 
-      if (!name || !email || !message || !subject) return;
+                            <a class="icon-btn" href="https://www.linkedin.com/in/the-mohammad-owais" target="_blank" title="LinkedIn">
+                                <img src="https://img.icons8.com/ios-glyphs/24/0077B5/linkedin.png" alt="LinkedIn" />
+                            </a>
 
-      fetch('sendmail.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ name, email, subject, message })
-      })
-      .then(response => {
-        if (response.ok) {
-          showToast("✅ Message sent successfully!");
-          document.querySelector('.contact-form').reset();
-        } else {
-          showToast("⚠️ Failed to send message. Please try again later.");
+                            <a class="icon-btn" href="https://medium.com/@i211762" target="_blank" title="Medium">
+                                <img src="https://img.icons8.com/ios-filled/24/000000/medium-logo.png" alt="Medium" />
+                            </a>
+                        </div>
+
+
+
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Google Map Embed -->
+            <div class="map-embed">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.372351926898!2d73.0785923!3d33.6750735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df950ab9d7a6f3%3A0x9920e0c679dfbfbb!2sI-8%2F2%2C%20Islamabad%2C%20Pakistan!5e0!3m2!1sen!2s!4v1694298104123!5m2!1sen!2s"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Toast Message -->
+            <div id="toast">Message sent successfully!</div>
+
+            <!-- JS -->
+            <script>
+                function sendMessage(event) {
+                  event.preventDefault();
+                  const name = document.getElementById('name').value.trim();
+                  const email = document.getElementById('email').value.trim();
+                  const subject = document.getElementById('subject').value.trim();
+                  const message = document.getElementById('message').value.trim();
+            
+                  if (!name || !email || !message || !subject) return;
+            
+                  fetch('sendmail.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ name, email, subject, message })
+                  })
+                  .then(response => {
+                    if (response.ok) {
+                      showToast("✅ Message sent successfully!");
+                      document.querySelector('.contact-form').reset();
+                    } else {
+                      showToast("⚠️ Failed to send message. Please try again later.");
+                    }
+                  })
+                  .catch(() => {
+                    showToast("❌ Error sending message. Check your internet connection.");
+                  });
+                }
+            
+                function copyToClipboard(text) {
+                  navigator.clipboard.writeText(text).then(() => {
+                    showToast("📋 Email copied to clipboard!");
+                  });
+                }
+            
+                function showToast(message) {
+                  const toast = document.getElementById('toast');
+                  toast.textContent = message;
+                  toast.classList.add('show');
+            
+                  // Remove the toast after 4 seconds
+                  setTimeout(() => {
+                    toast.classList.remove('show');
+                  }, 4000);
+                }
+            </script>
+        </section>
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+    <footer>
+        <div class="wrap small">© 2025 Khawaja Muhammad Owais
+            <br>
+            <a href="https://docs.github.com/en/pages">Hosted free on Github pages.</a>
+            <br>
+            <a href="https://www.cloudflare.com/plans/free/">Using cloudflare free plan.</a>
+            <br>
+            <a href="https://www.opensourceprojects.dev/post/1959600649026302372">Using the free domain by DigitalPlat FreeDomain.</a></div>
+    </footer>
+
+
+
+    <script>
+        /* ====== Utility: tiny markdown renderer (supports headings, bold, italics, links, lists, code fences) ====== */
+        function renderMarkdown(md){
+          // Normalize line endings
+          md = md.replace(/\r/g,'');
+          // Code fences
+          md = md.replace(/```([\s\S]*?)```/g, function(m, code){
+            return '<pre style="background:#061427;padding:12px;border-radius:8px;overflow:auto"><code>'+escapeHtml(code)+'</code></pre>'
+          });
+          // headings
+          md = md.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+          md = md.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+          md = md.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+          // bold/italic
+          md = md.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+          md = md.replace(/\*(.*?)\*/g, '<em>$1</em>');
+          // links
+          md = md.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+          // unordered lists
+          md = md.replace(/^\s*[-\*] (.*)/gm, '<li>$1</li>');
+          md = md.replace(/(<li>.*<\/li>\n?)+/g, function(m){
+            if(m.trim().startsWith('<li>')) return '<ul>'+m+'</ul>';
+            return m;
+          });
+          // paragraphs
+          md = md.replace(/^(?!<h|<ul|<pre|<blockquote|<img|<ol|<li|<p)(.+)$/gm, function(m){
+            if(m.trim()==='') return '';
+            return '<p>'+m+'</p>';
+          });
+          return md;
         }
-      })
-      .catch(() => {
-        showToast("❌ Error sending message. Check your internet connection.");
-      });
-    }
-
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast("📋 Email copied to clipboard!");
-      });
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.classList.add('show');
-
-      // Remove the toast after 4 seconds
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 4000);
-    }
-  </script>
-</section>
-
-
-
-
-
-
-
-
-
-
-  </main>
-
-  <footer>
-    <div class="wrap small">© 2025 Khawaja Muhammad Owais <br>
-        <a href="https://docs.github.com/en/pages">Hosted free on Github pages.</a><br>
-        <a href="https://www.cloudflare.com/plans/free/">Using cloudflare free plan.</a><br>
-        <a href="https://www.opensourceprojects.dev/post/1959600649026302372">Using the free domain by DigitalPlat FreeDomain.</a></div>
-  </footer>
-
-
-
-<script>
-    /* ====== Utility: tiny markdown renderer (supports headings, bold, italics, links, lists, code fences) ====== */
-    function renderMarkdown(md){
-      // Normalize line endings
-      md = md.replace(/\r/g,'');
-      // Code fences
-      md = md.replace(/```([\s\S]*?)```/g, function(m, code){
-        return '<pre style="background:#061427;padding:12px;border-radius:8px;overflow:auto"><code>'+escapeHtml(code)+'</code></pre>'
-      });
-      // headings
-      md = md.replace(/^### (.*$)/gim, '<h3>$1</h3>');
-      md = md.replace(/^## (.*$)/gim, '<h2>$1</h2>');
-      md = md.replace(/^# (.*$)/gim, '<h1>$1</h1>');
-      // bold/italic
-      md = md.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      md = md.replace(/\*(.*?)\*/g, '<em>$1</em>');
-      // links
-      md = md.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-      // unordered lists
-      md = md.replace(/^\s*[-\*] (.*)/gm, '<li>$1</li>');
-      md = md.replace(/(<li>.*<\/li>\n?)+/g, function(m){
-        if(m.trim().startsWith('<li>')) return '<ul>'+m+'</ul>';
-        return m;
-      });
-      // paragraphs
-      md = md.replace(/^(?!<h|<ul|<pre|<blockquote|<img|<ol|<li|<p)(.+)$/gm, function(m){
-        if(m.trim()==='') return '';
-        return '<p>'+m+'</p>';
-      });
-      return md;
-    }
-    function escapeHtml(s){
-      return s.replace(/[&<>]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]});
-    }
-
-    /* ====== POSTS system ======
-       Expects: /posts/posts.json (array of {file, title, date})
-       Each post file: /posts/<file> (raw markdown)
-       This works on GitHub Pages if you add the files in the repo under /posts.
-    */
-    async function loadPosts(){
-      const listEl = document.getElementById('postList');
-      const contentEl = document.getElementById('postContent');
-      listEl.innerHTML = '<div class="small">Loading posts…</div>';
-      try{
-        const resp = await fetch(window.location.pathname.replace(/\/[^\/]*$/, '/') + 'posts/posts.json');
-        if(!resp.ok) throw new Error('manifest not found');
-        const posts = await resp.json();
-        if(!Array.isArray(posts) || posts.length===0){ listEl.innerHTML = '<div class="small">No posts found in posts/posts.json</div>'; return; }
-        listEl.innerHTML = '';
-        posts.sort((a,b)=> (b.date||'') - (a.date||''));
-        for(const p of posts){
-          const preview = document.createElement('div'); preview.className='post-preview'; preview.tabIndex=0;
-          preview.innerHTML = `<div style="font-weight:700">${escapeHtml(p.title||p.file)}</div><div class='small' style='margin-top:6px'>${escapeHtml(p.date||'')}</div>`;
-          preview.addEventListener('click', ()=> loadPost(p));
-          preview.addEventListener('keydown',(e)=>{ if(e.key==='Enter') loadPost(p); });
-          listEl.appendChild(preview);
+        function escapeHtml(s){
+          return s.replace(/[&<>]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]});
         }
-        // load first post
-        loadPost(posts[0]);
-      }catch(err){
-        listEl.innerHTML = '<div class="small">Could not load posts. Make sure <code>posts/posts.json</code> exists in your repo.</div>';
-        contentEl.innerHTML = '<div class="small">To enable the blog: add a folder named <code>posts</code> at repo root and a file <code>posts/posts.json</code> describing posts. See the instructions inline on the page.</div>';
-        console.warn(err);
-      }
-    }
-    async function loadPost(post){
-      const contentEl = document.getElementById('postContent');
-      contentEl.innerHTML = '<div class="small">Loading post…</div>';
-      try{
-        const base = window.location.pathname.replace(/\/[^\/]*$/, '/');
-        const resp = await fetch(base + 'posts/' + post.file);
-        if(!resp.ok) throw new Error('post not found');
-        const md = await resp.text();
-        contentEl.innerHTML = renderMarkdown(md);
-      }catch(err){
-        contentEl.innerHTML = '<div class="small">Unable to load post: '+escapeHtml(post.file)+'</div>';
-        console.error(err);
-      }
-    }
-
-    /* ====== copy helper and contact form handler ====== */
-    function copyToClipboard(text){
-      navigator.clipboard?.writeText(text).then(()=>{ alert('Copied: '+text); }).catch(()=>{ prompt('Copy this:', text); });
-    }
-
-    function sendMessage(e){
-      e.preventDefault();
-      // No backend on GitHub pages — provide instructions
-      const note = document.getElementById('formNote');
-      note.textContent = 'This page is static on GitHub Pages. To receive messages, either use a form provider (Formspree/Netlify Forms) or send email directly to owaiskhawaja789@gmail.com. I did not wire a backend intentionally.';
-    }
-
-    // initialize
-    (function(){
-      // load posts
-      loadPosts();
-
-      // small URL-friendly base path for relative fetches when served at root
-      // nothing else to do
-    })();
-  </script>
-<script src="https://unpkg.com/lucide@latest"></script>
+    
+        /* ====== POSTS system ======
+           Expects: /posts/posts.json (array of {file, title, date})
+           Each post file: /posts/<file> (raw markdown)
+           This works on GitHub Pages if you add the files in the repo under /posts.
+        */
+        async function loadPosts(){
+          const listEl = document.getElementById('postList');
+          const contentEl = document.getElementById('postContent');
+          listEl.innerHTML = '<div class="small">Loading posts…</div>';
+          try{
+            const resp = await fetch(window.location.pathname.replace(/\/[^\/]*$/, '/') + 'posts/posts.json');
+            if(!resp.ok) throw new Error('manifest not found');
+            const posts = await resp.json();
+            if(!Array.isArray(posts) || posts.length===0){ listEl.innerHTML = '<div class="small">No posts found in posts/posts.json</div>'; return; }
+            listEl.innerHTML = '';
+            posts.sort((a,b)=> (b.date||'') - (a.date||''));
+            for(const p of posts){
+              const preview = document.createElement('div'); preview.className='post-preview'; preview.tabIndex=0;
+              preview.innerHTML = `<div style="font-weight:700">${escapeHtml(p.title||p.file)}</div><div class='small' style='margin-top:6px'>${escapeHtml(p.date||'')}</div>`;
+              preview.addEventListener('click', ()=> loadPost(p));
+              preview.addEventListener('keydown',(e)=>{ if(e.key==='Enter') loadPost(p); });
+              listEl.appendChild(preview);
+            }
+            // load first post
+            loadPost(posts[0]);
+          }catch(err){
+            listEl.innerHTML = '<div class="small">Could not load posts. Make sure <code>posts/posts.json</code> exists in your repo.</div>';
+            contentEl.innerHTML = '<div class="small">To enable the blog: add a folder named <code>posts</code> at repo root and a file <code>posts/posts.json</code> describing posts. See the instructions inline on the page.</div>';
+            console.warn(err);
+          }
+        }
+        async function loadPost(post){
+          const contentEl = document.getElementById('postContent');
+          contentEl.innerHTML = '<div class="small">Loading post…</div>';
+          try{
+            const base = window.location.pathname.replace(/\/[^\/]*$/, '/');
+            const resp = await fetch(base + 'posts/' + post.file);
+            if(!resp.ok) throw new Error('post not found');
+            const md = await resp.text();
+            contentEl.innerHTML = renderMarkdown(md);
+          }catch(err){
+            contentEl.innerHTML = '<div class="small">Unable to load post: '+escapeHtml(post.file)+'</div>';
+            console.error(err);
+          }
+        }
+    
+        /* ====== copy helper and contact form handler ====== */
+        function copyToClipboard(text){
+          navigator.clipboard?.writeText(text).then(()=>{ alert('Copied: '+text); }).catch(()=>{ prompt('Copy this:', text); });
+        }
+    
+        function sendMessage(e){
+          e.preventDefault();
+          // No backend on GitHub pages — provide instructions
+          const note = document.getElementById('formNote');
+          note.textContent = 'This page is static on GitHub Pages. To receive messages, either use a form provider (Formspree/Netlify Forms) or send email directly to owaiskhawaja789@gmail.com. I did not wire a backend intentionally.';
+        }
+    
+        // initialize
+        (function(){
+          // load posts
+          loadPosts();
+    
+          // small URL-friendly base path for relative fetches when served at root
+          // nothing else to do
+        })();
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
 </body>
+
 </html>
