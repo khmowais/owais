@@ -17,7 +17,7 @@ A simple, responsive personal website showcasing my work as a Data Scientist, fo
 1. **Clone the Repository**:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/khmowais/owais/
    ```
 
 2. **Directory Structure**:
