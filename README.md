@@ -1,2 +1,0 @@
-# owais
-personal-website
