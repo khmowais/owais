@@ -1,82 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Khawaja M. Owais</title>
-    <link rel="stylesheet" href="blog.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <script src="scripts.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reading | Khawaja M. Owais</title>
+
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="blog.css" />
 </head>
 <body>
-    <header class="toolbar">
-        <div class="toolbar-wrap">
-            <div class="toolbar-brand">
-                <a href="index.html" class="brand-link">Khawaja M. Owais</a>
-            </div>
-            <div class="toolbar-tools">
-                <button class="tool-btn" onclick="toggleHighlight()" title="Highlight text"><i class="bi bi-pen"></i></button>
-                <button class="tool-btn" onclick="openSearch()" title="Search in article (Ctrl+K)"><i class="bi bi-search"></i></button>
-                <button class="tool-btn" onclick="changeFontSize(-2)" title="Decrease font size"><i class="bi bi-dash"></i></button>
-                <span id="fontSize">16px</span>
-                <button class="tool-btn" onclick="changeFontSize(2)" title="Increase font size"><i class="bi bi-plus"></i></button>
-                <button class="tool-btn" onclick="toggleTheme()" title="Toggle dark/light theme"><i class="bi bi-moon-stars-fill" id="themeIcon"></i></button>
-            </div>
-        </div>
-        <div id="searchModal" class="search-modal">
-            <input type="text" id="searchInput" placeholder="Search in article..." autocomplete="off">
-            <div id="searchResults" class="search-results"></div>
-        </div>
-    </header>
+  <!-- Toolbar -->
+  <header class="toolbar">
+    <div class="toolbar-wrap">
+      <a href="index.html" class="brand-link">Khawaja M. Owais</a>
+      <div class="toolbar-tools">
+        <button class="tool-btn" onclick="changeFont(-2)" title="Smaller text"><i class="bi bi-dash"></i></button>
+        <span id="fontSize">16px</span>
+        <button class="tool-btn" onclick="changeFont(2)" title="Larger text"><i class="bi bi-plus"></i></button>
+        <button class="tool-btn" onclick="toggleTheme()" title="Toggle dark/light theme">
+          <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <main>
-        <section class="content-wrap">
-            <div class="article-meta">
-                <h1 id="articleTitle">Loading...</h1>
-                <div class="meta-details">
-                    <span>By <span id="articleAuthor">Khawaja M. Owais</span></span>
-                    <span id="articleDate">--</span>
-                    <span id="readingTime">-- min</span>
-                </div>
-                <div id="articleTags" class="meta-tags"></div>
-            </div>
-            <div id="postContent" class="article-content">
-                <div class="loading">Loading post…</div>
-            </div>
-            <div class="related-posts">
-                <h2>Enjoy Reading This Article?</h2>
-                <p>Here are some more articles you might like to read next:</p>
-                <ul id="relatedPosts" class="related-posts-list"></ul>
-            </div>
-            <div class="subscription-form">
-                <h2>Subscribe for Updates</h2>
-                <form id="subscribeForm" onsubmit="subscribe(event)">
-                    <input type="email" id="subscribeEmail" placeholder="user@example.com" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-            <div class="article-links">
-                <a href="index.html" class="link-btn"><i class="bi bi-house"></i> Home</a>
-                <a href="index.html#thoughts" class="link-btn"><i class="bi bi-book"></i> All Posts</a>
-                <a href="https://github.com/your-username/your-repo" target="_blank" rel="noopener" class="link-btn"><i class="bi bi-github"></i> View on GitHub</a>
-            </div>
-        </section>
-        <div id="readingProgress" class="reading-progress">
-            <div class="reading-progress-bar"></div>
-        </div>
-    </main>
+  <main class="content-wrap">
+    <article class="article">
+      <header class="article-header">
+        <h1 id="postTitle">Loading...</h1>
+        <p class="meta"><span id="postDate"></span></p>
+      </header>
+      <div id="postContent" class="article-content">
+        <div class="loading">Loading post…</div>
+      </div>
+    </article>
 
-    <footer>
-        <div class="footer-wrap">
-            <p>© 2025 Khawaja M. Owais</p>
-            <p>
-                Hosted on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a> •
-                Using <a href="https://www.cloudflare.com" target="_blank" rel="noopener">Cloudflare Free Plan</a> •
-                Free Domain by <a href="https://digitalplat.org" target="_blank" rel="noopener">DigitalPlat</a>
-            </p>
-        </div>
-    </footer>
+    <!-- Related posts -->
+    <section class="related-posts">
+      <h2>You might also like</h2>
+      <ul id="relatedList"></ul>
+    </section>
 
-    <div id="toast"></div>
+    <nav class="article-links">
+      <a href="index.html" class="link-btn"><i class="bi bi-house"></i> Home</a>
+      <a href="blog.html" class="link-btn"><i class="bi bi-journal-text"></i> All Posts</a>
+    </nav>
+  </main>
+
+  <footer class="footer-wrap">
+    <div class="footer-social">
+      <a href="https://github.com/khmowais" target="_blank"><i class="bi bi-github"></i></a>
+      <a href="https://x.com/khmowais" target="_blank"><i class="bi bi-twitter-x"></i></a>
+      <a href="mailto:you@example.com"><i class="bi bi-envelope-fill"></i></a>
+    </div>
+    <p>© 2025 <strong>Khawaja M. Owais</strong> — Thoughts, Code & Curiosity</p>
+    <p class="footer-meta">
+      Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a> |
+      Secured by <a href="https://www.cloudflare.com" target="_blank">Cloudflare</a> |
+      Free Domain provided by <a href="https://digitalplat.org" target="_blank">DigitalPlat</a>
+    </p>
+  </footer>
+
+  <script>
+    let fontSize = 16;
+
+    function changeFont(delta) {
+      fontSize = Math.max(12, fontSize + delta);
+      document.documentElement.style.setProperty("--font-size", fontSize + "px");
+      document.getElementById("fontSize").textContent = fontSize + "px";
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const icon = document.getElementById("themeIcon");
+      body.classList.toggle("light");
+      icon.classList.toggle("bi-brightness-high-fill");
+      icon.classList.toggle("bi-moon-stars-fill");
+      localStorage.setItem("theme", body.classList.contains("light") ? "light" : "dark");
+    }
+
+    async function loadPost() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestedFile = urlParams.get("post"); // ?post=file.md
+
+      try {
+        const res = await fetch("posts/posts.json");
+        const posts = await res.json();
+
+        // Determine which post to load
+        let post = posts.find(p => p.file === requestedFile) || posts[0];
+        document.getElementById("postTitle").textContent = post.title;
+        document.getElementById("postDate").textContent = `Published on ${post.date}`;
+
+        // Load markdown
+        const mdRes = await fetch(`posts/${post.file}`);
+        const mdText = await mdRes.text();
+        document.getElementById("postContent").innerHTML = marked.parse(mdText);
+
+        // Render related posts
+        renderRelated(posts, post);
+      } catch (err) {
+        console.error(err);
+        document.getElementById("postContent").innerHTML =
+          "<p>Failed to load post or posts.json.</p>";
+      }
+    }
+
+    function renderRelated(posts, currentPost) {
+      const relatedContainer = document.getElementById("relatedList");
+      relatedContainer.innerHTML = "";
+
+      const currentTags = currentPost.tags || [];
+
+      const related = posts
+        .filter(p => p.file !== currentPost.file)
+        .map(p => ({
+          ...p,
+          matchScore: p.tags ? p.tags.filter(tag => currentTags.includes(tag)).length : 0
+        }))
+        .sort((a, b) => b.matchScore - a.matchScore)
+        .slice(0, 5);
+
+      related.forEach(p => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="reading.html?post=${p.file}">${p.title}</a>`;
+        relatedContainer.appendChild(li);
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "light") document.body.classList.add("light");
+      loadPost();
+    });
+  </script>
 </body>
 </html>
