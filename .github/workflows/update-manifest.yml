@@ -26,10 +26,11 @@ jobs:
 
       - name: Update manifest
         run: |
+          cat > update_manifest.py <<'EOF'
           import os, json, re, frontmatter
+
           POSTS_DIR = "posts"
           manifest_path = os.path.join(POSTS_DIR, "posts.json")
-
           posts = []
 
           for filename in sorted(os.listdir(POSTS_DIR)):
@@ -40,30 +41,32 @@ jobs:
               with open(path, "r", encoding="utf-8") as f:
                   post = frontmatter.load(f)
 
-              # Extract title and date from frontmatter or fallback
               title = post.get("title")
               date = post.get("date")
 
               if not title:
-                  # fallback: first H1 heading
                   m = re.search(r"^# (.+)", post.content, re.MULTILINE)
                   title = m.group(1).strip() if m else os.path.splitext(filename)[0]
 
               if not date:
-                  # fallback: extract from filename
-                  m = re.match(r"(\\d{4}-\\d{2}-\\d{2})", filename)
+                  m = re.match(r"(\d{4}-\d{2}-\d{2})", filename)
                   date = m.group(1) if m else ""
 
               posts.append({
-                "file": filename,
-                "title": title,
-                "date": date,
-                "tags": post.get("tags", [])
+                  "file": filename,
+                  "title": title,
+                  "date": date,
+                  "tags": post.get("tags", [])
               })
 
+          # Sort by newest first
+          posts.sort(key=lambda x: x["date"], reverse=True)
 
           with open(manifest_path, "w", encoding="utf-8") as f:
               json.dump(posts, f, indent=2, ensure_ascii=False)
+          EOF
+
+          python update_manifest.py
 
       - name: Commit and push changes
         env:
