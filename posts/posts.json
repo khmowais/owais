@@ -7,19 +7,39 @@
       "politics",
       "law",
       "pakistan",
-      "justice"
-    ]
+      "justice",
+      "court system",
+      "human rights"]
   },
   {
     "file": "2025-09-03-ollama_offline.md",
     "title": "Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough",
     "date": "2025-09-03",
-    "tags": []
+    "tags": ["tech",
+      "Linux",
+      "offline tools",
+      "OLLAMA",
+      "open source",
+      "software development",
+      "AI tools"]
   },
   {
     "file": "State Machines Explained.md",
     "title": "State Machines Explained",
-    "date": "",
-    "tags": []
+    "date": "2025-10-29",
+    "tags": [
+      "CS",
+      "State machines",
+      "engineering",
+      "programming",
+      "software architecture",
+      "computational theory",
+      "automata theory",
+      "algorithm design",
+      "finite state machines",
+      "state transitions",
+      "computer science concepts",
+      "system design"
+    ]
   }
 ]
