@@ -1,4 +1,25 @@
 [
-  {"file":"2025-09-03-ollama_offline.md","title":"Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough","date":"2025-09-03"},
-  {"file":"State Machines Explained.md","title":"State Machines Explained","date":"2025-10-29"}
+  {
+    "file": "Is-judicial-system-alive-in-Pakistan.md",
+    "title": "Is the Judicial System Alive in Pakistan?",
+    "date": "2025-11-07",
+    "tags": [
+      "politics",
+      "law",
+      "pakistan",
+      "justice"
+    ]
+  },
+  {
+    "file": "2025-09-03-ollama_offline.md",
+    "title": "Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough",
+    "date": "2025-09-03",
+    "tags": []
+  },
+  {
+    "file": "State Machines Explained.md",
+    "title": "State Machines Explained",
+    "date": "",
+    "tags": []
+  }
 ]
