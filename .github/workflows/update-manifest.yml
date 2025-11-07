@@ -1,0 +1,80 @@
+name: Update Posts Manifest
+
+on:
+  push:
+    paths:
+      - "posts/*.md"
+  workflow_dispatch:
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: pip install python-frontmatter
+
+      - name: Update manifest
+        run: |
+          import os, json, re, frontmatter
+          POSTS_DIR = "posts"
+          manifest_path = os.path.join(POSTS_DIR, "posts.json")
+
+          posts = []
+
+          for filename in sorted(os.listdir(POSTS_DIR)):
+              if not filename.endswith(".md"):
+                  continue
+
+              path = os.path.join(POSTS_DIR, filename)
+              with open(path, "r", encoding="utf-8") as f:
+                  post = frontmatter.load(f)
+
+              # Extract title and date from frontmatter or fallback
+              title = post.get("title")
+              date = post.get("date")
+
+              if not title:
+                  # fallback: first H1 heading
+                  m = re.search(r"^# (.+)", post.content, re.MULTILINE)
+                  title = m.group(1).strip() if m else os.path.splitext(filename)[0]
+
+              if not date:
+                  # fallback: extract from filename
+                  m = re.match(r"(\\d{4}-\\d{2}-\\d{2})", filename)
+                  date = m.group(1) if m else ""
+
+              posts.append({
+                "file": filename,
+                "title": title,
+                "date": date,
+                "tags": post.get("tags", [])
+              })
+
+
+          with open(manifest_path, "w", encoding="utf-8") as f:
+              json.dump(posts, f, indent=2, ensure_ascii=False)
+
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [[ `git status --porcelain` ]]; then
+            git add posts/posts.json
+            git commit -m "Update posts manifest"
+            git push
+          else
+            echo "No changes to commit."
+          fi
