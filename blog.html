@@ -1,142 +1,433 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Reading | Khawaja M. Owais</title>
 
-  <!-- Markdown parser -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
+  <!-- Marked -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="blog.css" />
-</head>
-<body>
-  <!-- Toolbar -->
-  <header class="toolbar">
-    <div class="toolbar-wrap">
-      <a href="index.html" class="brand-link">Khawaja M. Owais</a>
-      <div class="toolbar-tools">
-        <button class="tool-btn" onclick="changeFont(-2)" title="Smaller text"><i class="bi bi-dash"></i></button>
-        <span id="fontSize">16px</span>
-        <button class="tool-btn" onclick="changeFont(2)" title="Larger text"><i class="bi bi-plus"></i></button>
-        <button class="tool-btn" onclick="toggleTheme()" title="Toggle dark/light theme">
-          <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main class="content-wrap">
-    <article class="article">
-      <header class="article-header">
-        <h1 id="postTitle">Loading...</h1>
-        <p class="meta"><span id="postDate"></span></p>
-      </header>
-      <div id="postContent" class="article-content">
-        <div class="loading">Loading post…</div>
-      </div>
-    </article>
-
-    <!-- Related posts -->
-    <section class="related-posts">
-      <h2>You might also like</h2>
-      <ul id="relatedList"></ul>
-    </section>
-
-    <nav class="article-links">
-      <a href="index.html" class="link-btn"><i class="bi bi-house"></i> Home</a>
-      <a href="blog.html" class="link-btn"><i class="bi bi-journal-text"></i> All Posts</a>
-    </nav>
-  </main>
-
-  <footer class="footer-wrap">
-    <div class="footer-social">
-      <a href="https://github.com/khmowais" target="_blank"><i class="bi bi-github"></i></a>
-      <a href="mailto:owaiskhawaja789@gmail.com"><i class="bi bi-envelope-fill"></i></a>
-    </div>
-    <p>© 2025 <strong>Khawaja M. Owais</strong> — Thoughts, Code & Curiosity</p>
-    <p class="footer-meta">
-      Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a> |
-      Secured by <a href="https://www.cloudflare.com" target="_blank">Cloudflare</a> |
-      Free Domain provided by <a href="https://digitalplat.org" target="_blank">DigitalPlat</a>
-    </p>
-  </footer>
-
-  <script>
-    let fontSize = 16;
-
-    function changeFont(delta) {
-      fontSize = Math.max(12, fontSize + delta);
-      document.documentElement.style.setProperty("--font-size", fontSize + "px");
-      document.getElementById("fontSize").textContent = fontSize + "px";
+  <style>
+    /* ----------------- THEME VARIABLES (Hybrid Auto Theme) ----------------- */
+    :root{
+      --bg:#ffffff; --text:#111827; --muted:#6b7280; --card:#ffffff;
+      --accent:#b58900; /* golden accent for light */
+      --accent-dark:#56c7b8; /* teal-ish for dark */
+      --radius:14px; --max-width:760px; --ui-font:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      --reader-font:Merriweather, Georgia, serif; --transition:all .28s ease;
+      --reading-font-size:20px; --reading-line-height:1.9;
+      --toolbar-height:68px;
     }
 
-    function toggleTheme() {
-      const body = document.body;
-      const icon = document.getElementById("themeIcon");
-      body.classList.toggle("light");
-      icon.classList.toggle("bi-brightness-high-fill");
-      icon.classList.toggle("bi-moon-stars-fill");
-      localStorage.setItem("theme", body.classList.contains("light") ? "light" : "dark");
-    }
-
-    async function loadPost() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const requestedFile = urlParams.get("post"); // ?post=file.md
-
-      try {
-        const res = await fetch("posts/posts.json");
-        const posts = await res.json();
-
-        // Determine which post to load
-        let post = posts.find(p => p.file === requestedFile) || posts[0];
-        document.getElementById("postTitle").textContent = post.title;
-        document.getElementById("postDate").textContent = `Published on ${post.date}`;
-
-        // Load markdown
-        const mdRes = await fetch(`posts/${post.file}`);
-        const mdText = await mdRes.text();
-        document.getElementById("postContent").innerHTML = marked.parse(mdText);
-
-        // Render related posts
-        renderRelated(posts, post);
-      } catch (err) {
-        console.error(err);
-        document.getElementById("postContent").innerHTML =
-          "<p>Failed to load post or posts.json.</p>";
+    /* automatic dark theme via prefers-color-scheme, but still toggle-able */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:#0f1114; --text:#e6eef0; --muted:#9aa6ad; --card:#0e1113;
+        --accent:var(--accent-dark);
       }
     }
 
-    function renderRelated(posts, currentPost) {
-      const relatedContainer = document.getElementById("relatedList");
-      relatedContainer.innerHTML = "";
+    /* general page */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:var(--ui-font);background:var(--bg);color:var(--text);
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      transition:var(--transition);padding-top:var(--toolbar-height);
+    }
 
-      const currentTags = currentPost.tags || [];
+    /* ---------- Toolbar (floating + hide on scroll) ---------- */
+    .toolbar{
+      position:fixed;left:0;right:0;top:6px;height:var(--toolbar-height);
+      display:flex;align-items:center;justify-content:center;pointer-events:none;
+      z-index:1400;transition:transform .36s ease,opacity .24s ease;
+    }
+    .toolbar-inner{
+      width:min(1100px,94%);display:flex;align-items:center;justify-content:space-between;
+      pointer-events:all;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      backdrop-filter: blur(8px); border-radius:12px;padding:10px 14px;box-shadow:0 6px 30px rgba(2,6,23,0.08);
+    }
+    /* dark toolbar background */
+    @media (prefers-color-scheme: dark){ .toolbar-inner { background: linear-gradient(180deg, rgba(10,12,14,0.6), rgba(10,12,14,0.35)); box-shadow: 0 8px 34px rgba(0,0,0,0.5);} }
 
-      const related = posts
-        .filter(p => p.file !== currentPost.file)
-        .map(p => ({
-          ...p,
-          matchScore: p.tags ? p.tags.filter(tag => currentTags.includes(tag)).length : 0
-        }))
-        .sort((a, b) => b.matchScore - a.matchScore)
-        .slice(0, 5);
+    .brand { font-family:var(--reader-font); font-weight:700; letter-spacing:-0.02em; color:var(--text); text-decoration:none; display:flex; gap:10px; align-items:center; }
+    .brand small{display:block;font-size:12px;color:var(--muted);font-weight:600}
 
-      related.forEach(p => {
-        const li = document.createElement("li");
-        li.innerHTML = `<a href="reading.html?post=${p.file}">${p.title}</a>`;
-        relatedContainer.appendChild(li);
+    .toolbar-actions{display:flex;align-items:center;gap:10px}
+
+    .tool{background:transparent;border:1px solid rgba(0,0,0,0.06);padding:8px;border-radius:10px;cursor:pointer;font-size:15px}
+    @media (prefers-color-scheme: dark){ .tool{border-color:rgba(255,255,255,0.04)} }
+
+    .toolbar-hidden{transform:translateY(-110%);opacity:0.02;pointer-events:none}
+
+    /* ---------- Reader column ---------- */
+    .container{max-width:var(--max-width);margin:36px auto;padding:24px}
+    .reader{
+      display:block;margin:0 auto;background:var(--card);border-radius:14px;padding:48px 56px;
+      box-shadow: 0 18px 60px rgba(2,6,23,0.06);
+      font-family:var(--reader-font);font-weight:300;font-size:var(--reading-font-size);line-height:var(--reading-line-height);
+      color:var(--text);transition:var(--transition);
+    }
+    @media (prefers-color-scheme: dark){ .reader{box-shadow: 0 10px 40px rgba(0,0,0,0.6)} }
+
+    /* headings */
+    .reader h1{font-size:40px;margin:0 0 12px;line-height:1.08;font-weight:700}
+    .meta-row{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:14px;margin-bottom:18px}
+    .tag{display:inline-block;padding:6px 12px;border-radius:999px;background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--accent);cursor:pointer;font-weight:600;margin-right:8px;font-size:13px}
+    @media (prefers-color-scheme: dark){ .tag{border-color:rgba(255,255,255,0.04)} }
+
+    /* content */
+    .reader :where(p){margin:1.05em 0; color:inherit}
+    .reader img{max-width:100%;display:block;margin:22px auto;border-radius:10px;box-shadow:0 10px 30px rgba(2,6,23,0.08)}
+    .reader blockquote{border-left:4px solid var(--accent);padding-left:18px;margin:1.2em 0;color:var(--muted);font-style:italic;background:linear-gradient(90deg, rgba(0,0,0,0.01), transparent);border-radius:6px;padding:12px 16px}
+
+    /* code */
+    .reader pre{background:rgba(0,0,0,0.06);padding:14px;border-radius:10px;overflow:auto;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "JetBrains Mono", monospace}
+    @media (prefers-color-scheme: dark){ .reader pre{background:#071014;color:#b9e1df} }
+
+    /* reading progress */
+    .progress-wrap{position:fixed;left:0;right:0;bottom:0;height:6px;z-index:1500;background:transparent}
+    .progress{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#ffaf33);border-radius:6px;transition:width .12s linear}
+    @media (prefers-color-scheme: dark){ .progress{background:linear-gradient(90deg,var(--accent),#00d6b6)} }
+
+    /* related + actions */
+    .related{margin-top:36px;padding-top:18px;border-top:1px dashed rgba(0,0,0,0.04);display:flex;flex-direction:column;gap:8px}
+    .related a{color:var(--accent);font-weight:700;text-decoration:none}
+    .related small{color:var(--muted);margin-left:8px}
+
+    /* unobtrusive "All posts" overlay (styled like a slim index) */
+    .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:32px;z-index:1600}
+    .overlay.show{display:flex}
+    .overlay-bg{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6));backdrop-filter:blur(6px)}
+    .overlay-panel{position:relative;z-index:2;width:min(980px,94%);max-height:80vh;overflow:auto;border-radius:12px;padding:18px;background:var(--card);box-shadow:0 30px 90px rgba(2,6,23,0.45)}
+    .overlay-panel h3{margin:0 0 10px;font-size:20px}
+    .overlay-search{display:flex;gap:8px;margin-bottom:12px}
+    .overlay-search input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);font-size:15px}
+    @media (prefers-color-scheme: dark){ .overlay-search input{border-color:rgba(255,255,255,0.04)} }
+    .overlay-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .item{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);display:flex;flex-direction:column;gap:6px}
+    .item .tags{display:flex;gap:6px;flex-wrap:wrap}
+    .item a{font-weight:700;color:var(--text);text-decoration:none}
+    .item small{color:var(--muted)}
+    @media (max-width:760px){ .overlay-list{grid-template-columns:1fr} .reader{padding:28px 24px;font-size:18px} .overlay-panel{padding:12px} }
+
+    /* subtle fade on content load */
+    .reader{opacity:0;transform:translateY(6px);transition:opacity .5s ease, transform .45s ease}
+    .reader.ready{opacity:1;transform:none}
+
+    /* accessibility focus */
+    .tool:focus, .tag:focus, a:focus{outline:3px solid rgba(66,153,225,0.14);outline-offset:3px;border-radius:8px}
+
+    /* small helpers */
+    .meta-left{display:flex;gap:12px;align-items:center}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* ---------- Fix toolbar button visibility ---------- */
+
+/* make the buttons always contrast clearly */
+.tool {
+  color: var(--text);
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(0,0,0,0.1);
+  transition: background 0.2s ease, color 0.2s ease, border 0.2s ease;
+}
+
+/* for dark mode */
+@media (prefers-color-scheme: dark) {
+  .tool {
+    color: #fff;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .tool:hover {
+    background: rgba(255,255,255,0.2);
+  }
+}
+
+/* when manually toggled to light-mode */
+.light-mode .tool {
+  color: #111;
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* hover state */
+.tool:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+
+
+.tool {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,0.1);
+  transition: all .2s ease;
+}
+.tool:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+html.light-mode .tool {
+  background: #fff;
+  color: #111;
+  border-color: rgba(0,0,0,0.15);
+}
+html.light-mode .tool:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Toolbar -->
+  <div class="toolbar" id="toolbar">
+    <div class="toolbar-inner" role="banner">
+      <a class="brand" href="index.html">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+          <rect width="24" height="24" rx="6" fill="currentColor" style="opacity:.08"></rect>
+          <path d="M6 18L12 6l6 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <div>
+          <div style="font-size:15px">Khawaja M. Owais</div>
+          <small>Thoughts • Code • Curiosity</small>
+        </div>
+      </a>
+
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="toolbar-actions">
+          <button class="tool" id="btnAll" title="All posts (index)"><i class="bi bi-journal-text"></i></button>
+          <button class="tool" id="decrease" title="Smaller text">A-</button>
+          <button class="tool" id="increase" title="Bigger text">A+</button>
+          <button class="tool" id="themeToggle" title="Toggle theme"><i class="bi bi-moon-stars-fill"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- progress -->
+  <div class="progress-wrap" aria-hidden="true">
+    <div class="progress" id="progress"></div>
+  </div>
+
+  <main class="container" id="main">
+    <article class="reader" id="reader">
+      <header>
+        <h1 id="postTitle">Loading…</h1>
+        <div class="meta-row">
+          <div class="meta-left">
+            <div id="postDate" class="muted"></div>
+            <div id="tagContainer" style="display:flex;align-items:center;gap:6px;margin-left:8px"></div>
+          </div>
+          <div style="margin-left:auto" id="miniActions"></div>
+        </div>
+      </header>
+
+      <section id="postContent"> <div class="muted">Loading post…</div> </section>
+
+      <aside class="related" id="relatedContainer">
+        <h4 style="margin:0 0 6px 0">You might also like</h4>
+        <ul id="relatedList" style="list-style:none;padding-left:0;margin:0"></ul>
+      </aside>
+    </article>
+  </main>
+
+  <!-- Overlay index -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="overlay-bg" id="overlayBg" tabindex="-1"></div>
+    <div class="overlay-panel" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <h3 id="overlayTitle">All posts</h3>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input id="overlaySearch" placeholder="Search titles or tags…" style="padding:10px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);font-size:14px">
+          <button class="tool" id="closeOverlay" aria-label="Close overlay"><i class="bi bi-x"></i></button>
+        </div>
+      </div>
+
+      <div class="overlay-search" style="margin-bottom:8px">
+        <div id="tagFilters" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      </div>
+
+      <div class="overlay-list" id="overlayList" tabindex="0"></div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------- state ---------- */
+    let posts = [];
+    let current = null;
+    let fontSize = 20;
+    const reader = document.getElementById('reader');
+    const toolbar = document.getElementById('toolbar');
+
+    /* ------------- utility to remove YAML frontmatter ------------- */
+    function stripFrontmatter(md){
+      //return md.replace(/^---[\\s\\S]*?---\\s*/,'').trim();
+      return md.replace(/^---[\s\S]*?---\s*/, '').trim();
+
+    }
+
+    /* ------------- load posts.json and chosen post ------------- */
+    async function init(){
+      try{
+        const res = await fetch('posts/posts.json');
+        posts = await res.json();
+        // find requested post or default
+        const params = new URLSearchParams(location.search);
+        const file = params.get('post');
+        current = posts.find(p => p.file === file) || posts[0];
+        if(!current){ document.getElementById('postContent').innerHTML = '<p>No posts found.</p>'; return; }
+        renderHeader(current);
+        const md = await (await fetch('posts/' + current.file)).text();
+        const clean = stripFrontmatter(md);
+        document.getElementById('postContent').innerHTML = marked.parse(clean);
+        reader.classList.add('ready');
+        renderRelated();
+        prepareOverlay();
+        updateProgress();
+      }catch(e){ console.error(e); document.getElementById('postContent').innerHTML = '<p>Failed to load post.</p>'; }
+    }
+
+    function renderHeader(p){
+      document.getElementById('postTitle').textContent = p.title || p.file;
+      document.getElementById('postDate').textContent = p.date ? ('Published ' + p.date) : '';
+      const tc = document.getElementById('tagContainer'); tc.innerHTML = '';
+      (p.tags||[]).forEach(t=>{
+        const b = document.createElement('button'); b.className='tag'; b.textContent=t;
+        b.onclick = ()=>{ openOverlay(t); };
+        tc.appendChild(b);
       });
     }
 
-    window.addEventListener("DOMContentLoaded", () => {
-      if (localStorage.getItem("theme") === "light") document.body.classList.add("light");
-      loadPost();
+    /* ------------- Related (tags fallback to latest) ------------- */
+    function renderRelated(){
+      const ul = document.getElementById('relatedList'); ul.innerHTML='';
+      const currTags = (current.tags||[]).map(t=>t.toLowerCase());
+      let related = posts.filter(p=>p.file!==current.file)
+        .map(p=>({ ...p, score: (p.tags||[]).map(t=>t.toLowerCase()).filter(t=>currTags.includes(t)).length }))
+        .sort((a,b)=>b.score - a.score);
+      if(!related.length || related[0].score===0){
+        related = posts.filter(p=>p.file!==current.file).sort((a,b)=>new Date(b.date)-new Date(a.date));
+      }
+      related.slice(0,5).forEach(p=>{
+        const li = document.createElement('li');
+        li.innerHTML = '<a href="blog.html?post='+encodeURIComponent(p.file)+'">'+escapeHtml(p.title)+'</a><small> — '+(p.date||'')+'</small>';
+        ul.appendChild(li);
+      });
+    }
+
+    /* ------------- Overlay (All posts) ------------- */
+    function prepareOverlay(){
+      const filters = document.getElementById('tagFilters'); filters.innerHTML='';
+      const tagSet = new Set(); posts.forEach(p=> (p.tags||[]).forEach(t=>tagSet.add(t)));
+      Array.from(tagSet).sort().forEach(tag=>{
+        const btn = document.createElement('button'); btn.className='tag'; btn.textContent=tag;
+        btn.onclick = ()=>{ document.getElementById('overlaySearch').value=tag; renderOverlayList(); };
+        filters.appendChild(btn);
+      });
+      document.getElementById('btnAll').onclick = ()=> openOverlay();
+      document.getElementById('closeOverlay').onclick = closeOverlay;
+      document.getElementById('overlayBg').onclick = closeOverlay;
+      document.getElementById('overlaySearch').oninput = renderOverlayList;
+      document.getElementById('overlaySearch').addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeOverlay(); });
+    }
+
+    function openOverlay(defaultTag){
+      document.getElementById('overlay').classList.add('show');
+      document.getElementById('overlay').setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+      if(defaultTag) document.getElementById('overlaySearch').value = defaultTag;
+      else document.getElementById('overlaySearch').value = '';
+      renderOverlayList();
+      // focus search for quick typing
+      setTimeout(()=>document.getElementById('overlaySearch').focus(),80);
+    }
+    function closeOverlay(){
+      document.getElementById('overlay').classList.remove('show');
+      document.getElementById('overlay').setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+    }
+
+    function renderOverlayList(){
+      const q = (document.getElementById('overlaySearch').value || '').toLowerCase().trim();
+      const container = document.getElementById('overlayList'); container.innerHTML='';
+      let filtered = posts.slice();
+      if(q){
+        filtered = filtered.filter(p=>{
+          const inTitle = (p.title||'').toLowerCase().includes(q);
+          const inTags = (p.tags||[]).some(t=>t.toLowerCase().includes(q));
+          return inTitle || inTags;
+        });
+      }
+      if(!filtered.length){
+        // fallback to latest
+        filtered = posts.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,10);
+      }
+      filtered.forEach(p=>{
+        const el = document.createElement('div'); el.className='item';
+        const tagsHtml = (p.tags||[]).map(t=>' <span class="tag small">'+escapeHtml(t)+'</span>').join('');
+        el.innerHTML = '<a href="blog.html?post='+encodeURIComponent(p.file)+'" onclick="closeOverlay()">'+escapeHtml(p.title)+'</a><small>'+ (p.date||'') +'</small><div class="tags">'+tagsHtml+'</div>';
+        container.appendChild(el);
+      });
+    }
+
+    /* ------------- helpers ------------- */
+    function escapeHtml(s){ if(!s) return ''; return s.replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]); }
+
+    /* ------------- toolbar hide on scroll & progress ------------- */
+    let lastY = 0;
+    function onScroll(){
+      const y = window.scrollY || document.documentElement.scrollTop;
+      if(y > lastY && y > 160) toolbar.classList.add('toolbar-hidden');
+      else toolbar.classList.remove('toolbar-hidden');
+      lastY = y;
+      // progress
+      updateProgress();
+    }
+    function updateProgress(){
+      const content = document.getElementById('reader');
+      if(!content) return;
+      const total = content.scrollHeight - window.innerHeight + 120;
+      const scrolled = Math.max(0, window.scrollY - (content.offsetTop - 20));
+      const pct = Math.min(100, Math.floor((scrolled / (total || 1)) * 100));
+      document.getElementById('progress').style.width = pct + '%';
+    }
+
+    /* ------------- font controls & theme toggle ------------- */
+    document.getElementById('decrease').onclick = ()=> { fontSize = Math.max(16, fontSize - 2); document.querySelector('.reader').style.fontSize = fontSize + 'px'; };
+    document.getElementById('increase').onclick = ()=> { fontSize = Math.min(26, fontSize + 2); document.querySelector('.reader').style.fontSize = fontSize + 'px'; };
+
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.onclick = ()=>{
+      document.documentElement.classList.toggle('light-mode');
+      // persist manual toggle in localStorage
+      if(document.documentElement.classList.contains('light-mode')) localStorage.setItem('manualTheme','light');
+      else localStorage.removeItem('manualTheme');
+    };
+
+    // respect manual override
+    window.addEventListener('load', ()=>{
+      if(localStorage.getItem('manualTheme')==='light') document.documentElement.classList.add('light-mode');
+      // set initial font size
+      document.querySelector('.reader').style.fontSize = fontSize + 'px';
     });
+
+    /* ------------- init and events ------------- */
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeOverlay(); });
+    window.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
