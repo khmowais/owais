@@ -1,10 +1,13 @@
-# Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough
-
 ---
+title: "Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough"
+date: "2025-11-09"
+tags: [ "ollama","LLMs", "linux",  "bash", "CS", "engineering"]
+---
+# Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough
 
 ## If You're Technical, Start Here: Quick Instructions
 
-If you're a technical user and already understand what OLLAMA and LLMs are, follow the exact steps below. Otherwise, scroll down for the full explanation.  
+If you're a technie and already understand what OLLAMA and LLMs are, follow the exact steps below. Otherwise, scroll down for the full explanation.
 
 **Edit:** Run the following shell scripts on your online and offline machine. All work will be done. Don't forget to star the repo:  
 [Offline OLLAMA Guide GitHub](https://github.com/khmowais/offline_ollama_guide)
@@ -12,21 +15,19 @@ If you're a technical user and already understand what OLLAMA and LLMs are, foll
 ### On an Online Machine (Prep Phase)
 
 ```bash
-# Step 1: Download OLLAMA installer (choose one)
-wget https://ollama.com/download/ollama-linux-amd64-rocm.tgz
-# OR
+# Step 1: Download OLLAMA installer
 curl -fsSL https://ollama.com/install.sh | sh
 
-# Step 2: Download LLM model(s) in GGUF format
+# Step 2: Download LLM model(s) in GGUF format, here you can change the LLM you want to run. 
 wget https://huggingface.co/TheBloke/Qwen2-0.5B-GGUF/resolve/main/qwen2-0.5b.Q4_K_M.gguf
 
 # Step 3: Create a Modelfile (plain text, no extension)
 echo "FROM ./qwen2-0.5b.Q4_K_M.gguf" > Modelfile
 
 # Step 4: Copy the following to USB or external storage
-# - ollama installer (e.g., ollama-linux-amd64-rocm.tgz or ollama.deb)
-# - your downloaded .gguf model file(s)
-# - your Modelfile
+- ollama installer (e.g., ollama-linux-amd64-rocm.tgz or ollama.deb)
+- your downloaded .gguf model file(s)
+- your Modelfile
 ````
 
 ---
@@ -44,13 +45,13 @@ sudo dpkg -i ollama.deb
 ollama serve
 
 # Step 7: Register the model
-ollama create coder
+ollama create pet
 
 # Step 8: Confirm model is registered
 ollama list
 
 # Step 9: Run the model
-ollama run coder
+ollama run pet
 ```
 
 Done! You're now running LLMs fully offline using OLLAMA.
@@ -61,15 +62,15 @@ Done! You're now running LLMs fully offline using OLLAMA.
 
 ### Why This Guide?
 
-Most modern AI tools like OLLAMA assume internet access. But what if you're in a secure, offline, or air-gapped environment, e.g., a research lab or remote deployment?
-I faced this situation, and here's how I got OLLAMA + LLMs running fully offline.
+Most modern AI tools like OLLAMA assume internet access to install. But what if you're in an offline environment, e.g.,a remote deployment?
+I faced this situation and here's how I got OLLAMA + LLMs running fully offline.
 
 ---
 
 ### What is OLLAMA?
 
-OLLAMA is an open source CLI tool that lets you run LLMs (Large Language Models) like LLaMA, Mistral, Qwen, etc., locally on your computer.
-It's fast, flexible, and works offline once installed, but the initial setup needs internet unless you prepare ahead.
+OLLAMA is an open source tool that lets you run LLMs (Large Language Models) like LLaMA, Mistral, Qwen, etc., locally on your computer.
+It's fast, flexible and works offline once installed, but the initial setup needs internet unless you prepare ahead.
 
 ---
 
@@ -111,7 +112,7 @@ wget https://huggingface.co/TheBloke/Qwen2-0.5B-GGUF/resolve/main/qwen2-0.5b.Q4_
 
 ---
 
-### ✅ Step 3: Create a Modelfile
+### Step 3: Create a Modelfile
 
 ```bash
 echo "FROM ./qwen2-0.5b.Q4_K_M.gguf" > Modelfile
@@ -121,7 +122,7 @@ This tells OLLAMA which model to register.
 
 ---
 
-### ✅ Step 4: Move Files to Offline System
+### Step 4: Move Files to Offline System
 
 Copy all of these to a USB or external storage:
 
@@ -131,7 +132,7 @@ Copy all of these to a USB or external storage:
 
 ---
 
-### ✅ Step 5: Install on the Offline Machine
+### Step 5: Install on the Offline Machine
 
 ```bash
 tar -xvzf ollama-linux-amd64-rocm.tgz
@@ -144,7 +145,7 @@ This works without internet if dependencies are included in the archive (usually
 
 ---
 
-### ✅ Step 6: Check If OLLAMA Works
+### Step 6: Check If OLLAMA Works
 
 ```bash
 ollama serve
@@ -154,32 +155,32 @@ If this runs without error, OLLAMA is ready.
 
 ---
 
-### ✅ Step 7: Register Your Model
+### Step 7: Register Your Model
 
 With your Modelfile and `.gguf` model in the same folder:
 
 ```bash
-ollama create coder
+ollama create pet
 ```
 
-Replace `coder` with whatever name you want for the model.
+Replace `pet` with whatever name you want for the model.
 
 ---
 
-### ✅ Step 8: Verify the Model
+### Step 8: Verify the Model
 
 ```bash
 ollama list
 ```
 
-You should see your model (e.g., `coder`) listed.
+You should see your model (e.g., ` pet`) listed.
 
 ---
 
-### ✅ Step 9: Run the Model
+### Step 9: Run the Model
 
 ```bash
-ollama run coder
+ollama run pet
 ```
 
 You're now chatting with your model, fully offline.
@@ -200,13 +201,12 @@ USB/
 ## Pro Tips
 
 * Bundle everything into a ZIP or ISO if repeating installs
-* Use lightweight models like TinyLLM for low-spec machines
-* Models like Mistral, LLaMA, and Mixtral require powerful CPUs/GPUs and more RAM
+* Use lightweight models like TinyLLM for less powerful machines
+* Models like Mistral, LLaMA and Mixtral require powerful CPUs/GPUs and more RAM
 
 ---
 
 ## References
-
 * [OLLAMA Official Site](https://ollama.com)
 * [OLLAMA GitHub](https://github.com/ollama/ollama)
 * [TheBloke Models on HuggingFace](https://huggingface.co/TheBloke)
