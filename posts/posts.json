@@ -1,5 +1,16 @@
 [
   {
+    "file": "Running bash scripts in multiple ways.md",
+    "title": "Running Shell Scripts in Linux: `./` vs `bash`",
+    "date": "2025-11-09",
+    "tags": [
+      "linux",
+      "bash",
+      "CS",
+      "engineering"
+    ]
+  },
+  {
     "file": "Is-judicial-system-alive-in-Pakistan.md",
     "title": "Is the Judicial System Alive in Pakistan?",
     "date": "2025-11-07",
@@ -7,39 +18,19 @@
       "politics",
       "law",
       "pakistan",
-      "justice",
-      "court system",
-      "human rights"]
+      "justice"
+    ]
   },
   {
     "file": "2025-09-03-ollama_offline.md",
     "title": "Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough",
     "date": "2025-09-03",
-    "tags": ["tech",
-      "Linux",
-      "offline tools",
-      "OLLAMA",
-      "open source",
-      "software development",
-      "AI tools"]
+    "tags": []
   },
   {
     "file": "State Machines Explained.md",
     "title": "State Machines Explained",
-    "date": "2025-10-29",
-    "tags": [
-      "CS",
-      "State machines",
-      "engineering",
-      "programming",
-      "software architecture",
-      "computational theory",
-      "automata theory",
-      "algorithm design",
-      "finite state machines",
-      "state transitions",
-      "computer science concepts",
-      "system design"
-    ]
+    "date": "",
+    "tags": []
   }
 ]
