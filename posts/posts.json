@@ -1,5 +1,17 @@
 [
   {
+    "file": "Working_of_transformers.md",
+    "title": "Working of trnasformers, bird eye view",
+    "date": "2025-11-10",
+    "tags": [
+      "Transformers",
+      "Computers",
+      "engineering",
+      "LLMs",
+      "CS"
+    ]
+  },
+  {
     "file": "Running bash scripts in multiple ways.md",
     "title": "Running Shell Scripts in Linux: `./` vs `bash`",
     "date": "2025-11-09",
