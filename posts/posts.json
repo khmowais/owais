@@ -1,11 +1,9 @@
 [
   {
-    "file": "2025-09-03-ollama_offline.md",
-    "title": "Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough",
+    "file": "Running bash scripts in multiple ways.md",
+    "title": "Running Shell Scripts in Linux: `./` vs `bash`",
     "date": "2025-11-09",
     "tags": [
-      "ollama",
-      "LLMs",
       "linux",
       "bash",
       "CS",
@@ -13,10 +11,23 @@
     ]
   },
   {
-    "file": "Running bash scripts in multiple ways.md",
-    "title": "Running Shell Scripts in Linux: `./` vs `bash`",
+    "file": "State Machines Explained.md",
+    "title": "State machines explained",
     "date": "2025-11-09",
     "tags": [
+      "CS",
+      "engineering",
+      "state machines",
+      "computers"
+    ]
+  },
+  {
+    "file": "installing_ollama_offline.md",
+    "title": "Running OLLAMA on an Offline Linux System: Fast Guide + Full Walkthrough",
+    "date": "2025-11-09",
+    "tags": [
+      "ollama",
+      "LLMs",
       "linux",
       "bash",
       "CS",
@@ -33,11 +44,5 @@
       "pakistan",
       "justice"
     ]
-  },
-  {
-    "file": "State Machines Explained.md",
-    "title": "State Machines Explained",
-    "date": "",
-    "tags": []
   }
 ]
