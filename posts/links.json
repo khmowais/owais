@@ -1,0 +1,122 @@
+[
+  {
+    "title": "The Map of Mathematics",
+    "description": "A beautiful visual summary of all branches of math — from algebra to topology.",
+    "url": "https://www.youtube.com/watch?v=OmJ-4B-mS-Y",
+    "tags": ["math", "visualization", "education"]
+  },
+  {
+    "title": "Explorable Explanations by Nicky Case",
+    "description": "Interactive stories and simulations that teach complex systems and human behavior.",
+    "url": "https://ncase.me/",
+    "tags": ["interactive", "systems", "learning"]
+  },
+  {
+    "title": "Internet Archive",
+    "description": "A vast library of free books, movies, software, and websites — the digital time machine.",
+    "url": "https://archive.org/",
+    "tags": ["archive", "history", "open source"]
+  },
+  {
+    "title": "Seeing Theory",
+    "description": "An interactive guide to probability and statistics from Brown University.",
+    "url": "https://seeing-theory.brown.edu/",
+    "tags": ["statistics", "data science", "visualization"]
+  },
+  {
+    "title": "Inferno Operating System",
+    "description": "A distributed operating system that pushes portability and modular computing to the extreme.",
+    "url": "https://en.wikipedia.org/wiki/Inferno_(operating_system)",
+    "tags": ["operating systems", "distributed", "software"]
+  },
+  {
+    "title": "Ken Thompson",
+    "description": "The computing pioneer who co-created UNIX, B, and Go — foundational work for modern software.",
+    "url": "https://en.wikipedia.org/wiki/Ken_Thompson",
+    "tags": ["computing history", "unix", "software"]
+  },
+  {
+    "title": "Dmitry Belyayev (Zoologist)",
+    "description": "The scientist who domesticated silver foxes, uncovering deep links between evolution and behavior.",
+    "url": "https://en.wikipedia.org/wiki/Dmitry_Belyayev_(zoologist)",
+    "tags": ["biology", "evolution", "science history"]
+  },
+  {
+    "title": "Explore Software Defined Radio",
+    "description": "A practical guide to building and understanding SDR systems for real-world applications.",
+    "url": "https://pragprog.com/titles/wdradio/explore-software-defined-radio/",
+    "tags": ["radio", "hardware", "communication"]
+  },
+  {
+    "title": "OpenWebRX",
+    "description": "A web-based SDR receiver that lets you listen to the radio spectrum through your browser.",
+    "url": "https://www.openwebrx.de/",
+    "tags": ["radio", "open source", "signal processing"]
+  },
+  {
+    "title": "SQL Antipatterns Volume 1",
+    "description": "Learn about common SQL design mistakes and how to avoid them effectively.",
+    "url": "https://pragprog.com/titles/bksap1/sql-antipatterns-volume-1/",
+    "tags": ["databases", "sql", "software engineering"]
+  },
+  {
+    "title": "Designing Data-Intensive Applications",
+    "description": "The definitive guide to building reliable, scalable, and maintainable data systems.",
+    "url": "https://dataintensive.net/",
+    "tags": ["data", "systems", "scalability"]
+  },
+  {
+    "title": "OpenVINS",
+    "description": "An open-source visual-inertial navigation system framework for accurate localization.",
+    "url": "https://github.com/rpng/open_vins",
+    "tags": ["robotics", "navigation", "vision"]
+  },
+  {
+    "title": "Robot_Localization (ROS Package)",
+    "description": "A state estimation package in ROS that fuses IMU, odometry, and GPS data.",
+    "url": "http://docs.ros.org/en/noetic/api/robot_localization/html/",
+    "tags": ["robotics", "ros", "sensor fusion"]
+  },
+  {
+    "title": "Variational Autoencoders (VAE)",
+    "description": "A foundational concept in generative AI combining reconstruction and KL divergence loss.",
+    "url": "https://arxiv.org/abs/1312.6114",
+    "tags": ["machine learning", "ai", "generative"]
+  },
+  {
+    "title": "Local Exchange Trading System (LETS)",
+    "description": "Community-based barter systems built around mutual credit and blockchain ideas.",
+    "url": "https://en.wikipedia.org/wiki/Local_exchange_trading_system",
+    "tags": ["economics", "community", "blockchain"]
+  },
+  {
+    "title": "Snickernet Concept",
+    "description": "A communication network where data is transferred physically using storage media like USB drives.",
+    "url": "https://en.wikipedia.org/wiki/Sneakernet",
+    "tags": ["offline tech", "networking", "resilience"]
+  },
+  {
+    "title": "Agent-Based Modeling",
+    "description": "A computational approach to simulate complex systems using autonomous agents.",
+    "url": "https://en.wikipedia.org/wiki/Agent-based_model",
+    "tags": ["simulation", "complex systems", "data science"]
+  },
+  {
+    "title": "Precision vs Recall",
+    "description": "A concise explanation of the key trade-off in classification and decision systems.",
+    "url": "https://en.wikipedia.org/wiki/Precision_and_recall",
+    "tags": ["machine learning", "metrics", "data science"]
+  },
+  {
+    "title": "Ham Radio Digital Modes",
+    "description": "How amateur radio operators send text and data across long distances with minimal bandwidth.",
+    "url": "https://en.wikipedia.org/wiki/Amateur_radio_digital_modes",
+    "tags": ["radio", "low bandwidth", "communication"]
+  },
+  {
+    "title": "Crime Control Department (CCD) Analysis",
+    "description": "A critical reflection on the emergence of parallel justice systems and citizen trust.",
+    "url": "https://khmowais.github.io/owais/posts/2025-11-07-judicial_system.html",
+    "tags": ["law", "politics", "society"]
+  }
+]
