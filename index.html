@@ -235,64 +235,11 @@
             </div>
         </section>
 
-<section id="cool-finds" class="fade-in">
-  <div class="section-title" data-aos="fade-up">Cool Finds — Internet Gems</div>
-  <div class="cool-links-grid" data-aos="fade-up" data-aos-delay="100" id="coolLinksContainer">
-    <!-- Links will be inserted here -->
-  </div>
-</section>
-
-<script>
-  // List of your favorite finds
-  const coolFinds = [
-    {
-      title: "The Map of Mathematics",
-      desc: "A beautiful visual summary of all branches of math — from algebra to topology.",
-      url: "https://www.youtube.com/watch?v=OmJ-4B-mS-Y",
-      icon: "bi-diagram-3"
-    },
-    {
-      title: "Explorable Explanations by Nicky Case",
-      desc: "Interactive learning experiences about complex systems and human behavior.",
-      url: "https://ncase.me/",
-      icon: "bi-lightbulb"
-    },
-    {
-      title: "Internet Archive",
-      desc: "A vast library of free books, movies, software, and websites — the digital time machine.",
-      url: "https://archive.org/",
-      icon: "bi-archive"
-    },
-    {
-      title: "Seeing Theory",
-      desc: "Visualizing probability and statistics beautifully with interactive examples.",
-      url: "https://seeing-theory.brown.edu/",
-      icon: "bi-graph-up"
-    }
-  ];
-
-  // Render them
-  const container = document.getElementById("coolLinksContainer");
-  coolFinds.forEach((link, i) => {
-    const card = document.createElement("div");
-    card.className = "cool-link-card tilt";
-    card.setAttribute("data-tilt", "");
-    card.setAttribute("data-tilt-max", "10");
-    card.setAttribute("data-tilt-speed", "400");
-    card.setAttribute("data-aos", "fade-up");
-    card.setAttribute("data-aos-delay", 100 + i * 100);
-    card.innerHTML = `
-      <a href="${link.url}" target="_blank" class="cool-link-inner">
-        <div class="cool-icon"><i class="bi ${link.icon}"></i></div>
-        <div class="cool-info">
-          <h4>${link.title}</h4>
-          <p>${link.desc}</p>
-        </div>
-      </a>
-    `;
-    container.appendChild(card);
-  });
-</script>
+<a href="links.html" style="text-decoration: none; color: inherit;">
+  <section id="cool-finds" class="fade-in">
+    <div class="section-title" data-aos="fade-up">Cool Finds — Internet Gems</div>
+  </section>
+</a>
 
 
 
