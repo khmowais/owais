@@ -1,7 +1,7 @@
 ---
 title: "Are we going to hit the wall?"
 date: "2025-11-25"
-tags: ["AI", "philosophy", "internet", "technology", "LLMs", "CS"c, "computers", "culture"]
+tags: ["AI", "philosophy", "internet", "technology", "LLMs", "CS", "computers", "culture"]
 ---
 ### **Machines started talking to themselves**
 In the early days of web, web was raw and alive. If you talked to someone online, you were certainly talking to a person, an opinionated, typo prone and unpredictable human. Internet back then was a collective diary of human consciousness. Every post, argument and badly formatted web page showed the work of natural human minds.
@@ -42,6 +42,6 @@ Avoiding this collapse doesn’t mean abandoning AI. It means grounding it again
 
 
 I had this md file wriiten but not published and computerphile just did a video on same topic further proving my point. Now i am gonna publish it.
-![[Pasted image 20251115025335.png]]
-![[Pasted image 20251115025436.png]]
+![[file_creation_date.png]]
+![[computerphile.png]]
 	
