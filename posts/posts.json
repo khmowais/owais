@@ -1,5 +1,20 @@
 [
   {
+    "file": "Are we going to hit the wall.md",
+    "title": "Are we going to hit the wall?",
+    "date": "2025-11-25",
+    "tags": [
+      "AI",
+      "philosophy",
+      "internet",
+      "technology",
+      "LLMs",
+      "CS",
+      "computers",
+      "culture"
+    ]
+  },
+  {
     "file": "Working_of_transformers.md",
     "title": "Working of trnasformers, bird eye view",
     "date": "2025-11-10",
