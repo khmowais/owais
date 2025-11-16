@@ -124,5 +124,11 @@
     "description": "In the USSR they built a more effcient ternary computer but it was buried in the histroy",
     "url": "https://www.youtube.com/watch?v=4vwOJE0Dq38",
     "tags": ["mathematics", "politics", "computers"]
+  },
+  {
+    "title": "Building AI Agents",
+    "description": "A google doc with links to learning resources about building AI agents",
+    "url": "https://docs.google.com/document/d/1RNPR6BvRUkxNOqOteXdf0CC5YNRkg_LxOk37xIzKL1g/",
+    "tags": ["LLMs", "agents", "computers"]
   }
 ]
