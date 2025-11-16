@@ -90,7 +90,7 @@
     "tags": ["economics", "community", "blockchain"]
   },
   {
-    "title": "Snickernet Concept",
+    "title": "Sneakernet",
     "description": "A communication network where data is transferred physically using storage media like USB drives.",
     "url": "https://en.wikipedia.org/wiki/Sneakernet",
     "tags": ["offline tech", "networking", "resilience"]
@@ -116,7 +116,13 @@
   {
     "title": "Crime Control Department (CCD) Analysis",
     "description": "A critical reflection on the emergence of parallel justice systems and citizen trust.",
-    "url": "https://khmowais.github.io/owais/posts/2025-11-07-judicial_system.html",
+    "url": "https://owais.qzz.io/blog?post=Is-judicial-system-alive-in-Pakistan.md",
     "tags": ["law", "politics", "society"]
+  },
+  {
+    "title": "The ternary computer",
+    "description": "In the USSR they built a more effcient ternary computer but it was buried in the histroy",
+    "url": "https://www.youtube.com/watch?v=4vwOJE0Dq38",
+    "tags": ["mathematics", "politics", "computers"]
   }
 ]
