@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links — Khawaja M. Owais</title>
+  <meta name="description" content="Connect with Khawaja M. Owais across the web.">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    /* --- Variables --- */
+    :root {
+      --bg-deep: #071229;
+      --accent-emerald: #00d084;
+      --accent-amber: #ffb05c;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-hover: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.1);
+      --text-main: #eaf3ff;
+      --text-muted: #9fb0c9;
+      --font-main: 'Inter', sans-serif;
+      --font-heading: 'Poppins', sans-serif;
+    }
+
+    /* --- Reset & Base --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* --- Animated Background Mesh --- */
+    .bg-mesh {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 15% 50%, rgba(0, 208, 132, 0.08), transparent 25%),
+                  radial-gradient(circle at 85% 30%, rgba(255, 176, 92, 0.05), transparent 25%);
+      animation: pulseMesh 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseMesh {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    /* --- Container --- */
+    .container {
+      width: 100%;
+      max-width: 480px;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* --- Profile Section --- */
+    .profile-header {
+      margin-bottom: 40px;
+      animation: fadeDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Avatar Area */
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-emerald);
+      margin: 0 auto 20px;
+      box-shadow: 0 0 30px rgba(0, 208, 132, 0.1);
+    }
+
+    .name {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .bio {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    
+    .bio-top {
+      color: var(--accent-emerald);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+
+    /* --- Links Stack --- */
+    .links-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      perspective: 1000px;
+    }
+
+    /* --- Grid for Side-by-Side Cards --- */
+    .two-column-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .link-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      color: var(--text-main);
+      text-decoration: none;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      overflow: hidden;
+      animation: fadeUp 0.5s backwards;
+      gap: 12px;
+    }
+
+    /* Grid item specific styles (Apply to all sizes now) */
+    .two-column-grid .link-card {
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+      padding: 20px 10px;
+      gap: 8px;
+    }
+
+    .two-column-grid .icon-box {
+      font-size: 1.5rem;
+      margin-bottom: 0;
+    }
+
+    .two-column-grid .link-action {
+      display: none;
+    }
+
+    /* Staggered animation delays */
+    .link-card:nth-child(1) { animation-delay: 0.1s; }
+    .link-card:nth-child(2) { animation-delay: 0.2s; }
+    .link-card:nth-child(3) { animation-delay: 0.3s; }
+    .link-card:nth-child(4) { animation-delay: 0.4s; }
+    .link-card:nth-child(5) { animation-delay: 0.5s; }
+
+    .link-card:hover {
+      background: var(--glass-hover);
+      transform: translateY(-3px) scale(1.02);
+      border-color: rgba(0, 208, 132, 0.3);
+      box-shadow: 0 10px 30px -10px rgba(0, 208, 132, 0.15);
+    }
+
+    .icon-box {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+
+    .link-card:hover .icon-box {
+      color: var(--accent-emerald);
+    }
+
+    .link-text {
+      flex: 1;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .two-column-grid .link-text {
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
+    
+    /* New class for the note text in brackets */
+    .note-text {
+        display: block;
+        font-size: 0.7em; /* Reduced font size */
+        opacity: 0.6;
+        font-weight: 400;
+        margin-top: 2px;
+    }
+
+    .link-action {
+      width: 24px;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s;
+      color: var(--accent-emerald);
+    }
+
+    .link-card:hover .link-action {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Featured Card */
+    .link-card.featured {
+      background: linear-gradient(90deg, rgba(0, 208, 132, 0.05), transparent);
+      border-color: rgba(0, 208, 132, 0.3);
+    }
+
+    /* --- Footer --- */
+    .footer {
+      margin-top: 60px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      opacity: 0.6;
+      animation: fadein 1.5s ease;
+    }
+
+    .footer-icons {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    
+    .footer-icons a {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+    
+    .footer-icons a:hover { color: var(--text-main); }
+
+    /* --- Animations --- */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 0.6; }
+    }
+
+    /* Mobile Tweaks */
+    @media (max-width: 600px) {
+      /* Force 2 columns on mobile, but adjust spacing to fit */
+      .two-column-grid {
+        grid-template-columns: 1fr 1fr; 
+        gap: 10px;
+      }
+      
+      .two-column-grid .link-card {
+        padding: 16px 8px; /* Reduce padding for small screens */
+      }
+
+      /* Allow container to breathe on small screens */
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background FX -->
+  <div class="bg-mesh"></div>
+
+  <div class="container">
+    
+    <!-- Profile Area -->
+    <header class="profile-header">
+      <p class="bio-top">Personal Link Tree</p>        
+      <h1 class="name">Khawaja M. Owais</h1>
+      <p class="bio">AI @ Goshawk Labs • Tech Builder</p>
+    </header>
+
+    <!-- Links Area -->
+    <nav class="links-stack">
+      
+      <!-- Personal Website (Featured) -->
+      <a href="https://owais.qzz.io/index.html" class="link-card featured">
+        <div class="icon-box"><i class="bi bi-globe-americas"></i></div>
+        <span class="link-text">Personal Website</span>
+        <div class="link-action"><i class="bi bi-arrow-right"></i></div>
+      </a>
+
+      <!-- Blog -->
+      <a href="https://owais.qzz.io/blog" class="link-card">
+        <div class="icon-box"><i class="bi bi-journal-richtext"></i></div>
+        <span class="link-text">Read my Blog</span>
+        <div class="link-action"><i class="bi bi-arrow-right"></i></div>
+      </a>
+
+      <!-- Side-by-Side Cards (Email & Phone) -->
+      <div class="two-column-grid">
+        <!-- Email -->
+        <a href="mailto:contact@khawajamo.com" class="link-card">
+          <div class="icon-box"><i class="bi bi-envelope-fill"></i></div>
+          <span class="link-text">Send Email</span>
+        </a>
+
+        <!-- Phone number -->
+        <a href="tel:+923485768439" class="link-card">
+          <div class="icon-box"><i class="bi bi-telephone-fill"></i></div>
+          <span class="link-text">
+            Call Me
+            <span class="note-text">(prefer email)</span>
+          </span>
+        </a>
+      </div>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/ap2kmo" target="_blank" rel="noopener" class="link-card">
+        <div class="icon-box"><i class="bi bi-instagram"></i></div>
+        <span class="link-text">Instagram</span>
+        <div class="link-action"><i class="bi bi-box-arrow-up-right"></i></div>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/khmowais" target="_blank" rel="noopener" class="link-card">
+        <div class="icon-box"><i class="bi bi-github"></i></div>
+        <span class="link-text">GitHub</span>
+        <div class="link-action"><i class="bi bi-box-arrow-up-right"></i></div>
+      </a>
+
+      <div class="two-column-grid">
+              <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/the-mohammad-owais/" target="_blank" rel="noopener" class="link-card">
+        <div class="icon-box"><i class="bi bi-linkedin"></i></div>
+        <span class="link-text">
+            LinkedIn
+            <span class="note-text">(don't like that platform)</span>
+        </span>
+        <div class="link-action"><i class="bi bi-box-arrow-up-right"></i></div>
+      </a>
+
+      <!-- Google Scholar -->
+      <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="link-card">
+        <div class="icon-box"><i class="bi bi-mortarboard-fill"></i></div>
+        <span class="link-text">
+            Google Scholar
+            <span class="note-text">(coming soon)</span>
+        </span>
+        <div class="link-action"><i class="bi bi-box-arrow-up-right"></i></div>
+      </a>
+      </div>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 Khawaja M. Owais</p>
+      <div class="footer-icons">
+        <a href="index.html" aria-label="Home"><i class="bi bi-house-door-fill"></i></a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
